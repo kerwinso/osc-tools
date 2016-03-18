@@ -1,0 +1,1 @@
+Allows you to enqueue a batch of PDF files in the CNX legacy editor using a simple text input file. If no input file is specified, it will default to desktop/input.txt
