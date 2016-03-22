@@ -1,4 +1,29 @@
 import webbrowser
+# test comment
+
+validserver = False
+
+def chooseserver():
+	global server
+	server = raw_input ("Enter 1 for Textbook-Dev, 2 for Textbook-QA server: ")
+
+# not working
+def servercheck():
+	global validserver, server
+	if server == '1':
+		validserver = True
+		print "dev"
+	elif server == '2':
+		validserver = True
+		print "QA"
+	else:
+		validserver = False
+		print "try again, enter 1 or 2"
+
+#call the functions above
+while validserver == False:
+	chooseserver()
+	servercheck()
 
 inputfile = raw_input ("Enter the name of your text input file: ")
 
