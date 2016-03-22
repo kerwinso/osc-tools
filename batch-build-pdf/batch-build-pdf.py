@@ -4,7 +4,7 @@ inputfile = raw_input ("Enter the name of your text input file: ")
 
 #Hit Enter without typing anything to assume an input file named 'input.txt' on your desktop
 if inputfile == '':
-	inputfile = 'desktop/input.txt'
+	inputfile = 'input.txt'
 else:
 	inputfile = inputfile
 
