@@ -1,10 +1,42 @@
 import webbrowser
 
-inputfile = raw_input ("Enter the name of your text input file: ")
+validserver = False
 
-#Hit Enter without typing anything to assume an input file named 'input.txt' on your desktop
+def chooseserver():
+	global server
+	server = raw_input ("Enter 1 for Textbook-Dev, 2 for Textbook-QA server, 'q' to quit: ")
+
+# WORKS, but need to set the actual servers
+def servercheck():
+	global validserver, server, baseURL, servername
+	if server.lower() =='q':
+		exit()
+	elif server == '1':
+		validserver = True
+		print "Dev server chosen"
+		baseURL = 'http://legacy-textbook-dev.cnx.org/content/'
+		servername = 'Textbook-Dev'
+	elif server == '2':
+		validserver = True
+		print "QA server chosen"
+		baseURL = 'http://legacy-textbook-qa.cnx.org/content/'
+		servername = 'Textbook-QA'
+	else:
+		validserver = False
+		print "try again, enter 1 or 2"
+
+#call the functions above
+while validserver == False:
+	chooseserver()
+	servercheck()
+
+inputfile = raw_input ("Enter the name of your text input file (default is './input.txt'): ")
+
+#Hit Enter without typing anything to assume input file named 'input.txt'
 if inputfile == '':
 	inputfile = 'input.txt'
+elif inputfile.lower() =='q':
+	exit()
 else:
 	inputfile = inputfile
 
@@ -13,11 +45,11 @@ buildlist = open(inputfile)
 for each in buildlist:
 	collID = each.strip()
 	if collID.startswith('col') and len(collID) == 8 and collID[3:].isdigit():
-		buildurl = "http://legacy-textbook-dev.cnx.org/content/" + collID + "/latest/enqueue"
-		print "* " + collID + " enqueued on textbook-dev (starts with col)"
+		buildurl = baseURL + collID + "/latest/enqueue"
+		print "* " + collID + " enqueued on " + servername
 	elif collID[0:4].isdigit() and len(collID) == 5:
-		buildurl = "http://legacy-textbook-dev.cnx.org/content/col" + collID + "/latest/enqueue"
-		print "* " + collID + " enqueued on textbook-dev (does not start with col)"
+		buildurl = baseURL + "/col" + collID + "/latest/enqueue"
+		print "* " + collID + " enqueued on " + servername
 	else: 
 		print "* Skipped collection " + collID + " due to incorrect formatting"
 		continue
