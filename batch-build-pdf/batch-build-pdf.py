@@ -1,16 +1,17 @@
 import webbrowser
-# test comment
 
 validserver = False
 
 def chooseserver():
 	global server
-	server = raw_input ("Enter 1 for Textbook-Dev, 2 for Textbook-QA server: ")
+	server = raw_input ("Enter 1 for Textbook-Dev, 2 for Textbook-QA server, 'q' to quit: ")
 
-# not working
+# WORKS, but need to set the actual servers
 def servercheck():
 	global validserver, server
-	if server == '1':
+	if server.lower() =='q':
+		exit()
+	elif server == '1':
 		validserver = True
 		print "dev"
 	elif server == '2':
@@ -25,11 +26,13 @@ while validserver == False:
 	chooseserver()
 	servercheck()
 
-inputfile = raw_input ("Enter the name of your text input file: ")
+inputfile = raw_input ("Enter the name of your text input file (default is './input.txt'): ")
 
-#Hit Enter without typing anything to assume an input file named 'input.txt' on your desktop
+#Hit Enter without typing anything to assume input file named 'input.txt'
 if inputfile == '':
 	inputfile = 'input.txt'
+elif inputfile.lower() =='q':
+	exit()
 else:
 	inputfile = inputfile
 
