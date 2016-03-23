@@ -1,6 +1,6 @@
 Various tools and scripts for OpenStax:
 
-* batch-build-pdf: Allows you to enqueue a batch of PDF files in the CNX legacy editor using a simple text input file. Server selection feature forthcoming.
+* batch-build-pdf: (python)  Allows enqueuing a batch of PDF files on the CNX legacy editor (textbook-dev or textbook-QA).
 
 * GitLogin: automate logging in to textbook-dev from my local machine, plus a feature to view the real-time transforms. 
 
