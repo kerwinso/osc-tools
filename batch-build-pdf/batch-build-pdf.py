@@ -8,15 +8,17 @@ def chooseserver():
 
 # WORKS, but need to set the actual servers
 def servercheck():
-	global validserver, server
+	global validserver, server, baseURL
 	if server.lower() =='q':
 		exit()
 	elif server == '1':
 		validserver = True
-		print "dev"
+		print "Dev server chosen"
+		baseURL = 'http://legacy-textbook-dev.cnx.org/content/'
 	elif server == '2':
 		validserver = True
-		print "QA"
+		print "QA server chosen"
+		baseURL = 'http://legacy-textbook-qa.cnx.org/content/'
 	else:
 		validserver = False
 		print "try again, enter 1 or 2"
@@ -41,11 +43,11 @@ buildlist = open(inputfile)
 for each in buildlist:
 	collID = each.strip()
 	if collID.startswith('col') and len(collID) == 8 and collID[3:].isdigit():
-		buildurl = "http://legacy-textbook-dev.cnx.org/content/" + collID + "/latest/enqueue"
-		print "* " + collID + " enqueued on textbook-dev (starts with col)"
+		buildurl = baseURL + collID + "/latest/enqueue"
+		print "* " + collID + " enqueued"
 	elif collID[0:4].isdigit() and len(collID) == 5:
-		buildurl = "http://legacy-textbook-dev.cnx.org/content/col" + collID + "/latest/enqueue"
-		print "* " + collID + " enqueued on textbook-dev (does not start with col)"
+		buildurl = baseURL + "/col" + collID + "/latest/enqueue"
+		print "* " + collID + " enqueued"
 	else: 
 		print "* Skipped collection " + collID + " due to incorrect formatting"
 		continue
