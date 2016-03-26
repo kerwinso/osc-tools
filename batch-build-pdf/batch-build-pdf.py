@@ -6,7 +6,6 @@ def chooseserver():
 	global server
 	server = raw_input ("Enter 1 for Textbook-Dev, 2 for Textbook-QA server, 'q' to quit: ")
 
-# WORKS, but need to set the actual servers
 def servercheck():
 	global validserver, server, baseURL, servername
 	if server.lower() =='q':
@@ -33,12 +32,8 @@ while validserver == False:
 inputfile = raw_input ("Enter the name of your text input file (default is './input.txt'): ")
 
 #Hit Enter without typing anything to assume input file named 'input.txt'
-if inputfile == '':
-	inputfile = 'input.txt'
-elif inputfile.lower() =='q':
-	exit()
-else:
-	inputfile = inputfile
+if inputfile == '':	inputfile = 'input.txt'
+elif inputfile.lower() =='q': exit()
 
 buildlist = open(inputfile)
 
