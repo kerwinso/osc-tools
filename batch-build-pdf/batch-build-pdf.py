@@ -1,13 +1,12 @@
 import webbrowser
 
 validserver = False
+validfile = False
 
 def chooseserver():
-	global server
+	global validserver, server, baseURL, servername
 	server = raw_input ("Enter 1 for Textbook-Dev, 2 for Textbook-QA server, 'q' to quit: ")
 
-def servercheck():
-	global validserver, server, baseURL, servername
 	if server.lower() =='q':
 		exit()
 	elif server == '1':
@@ -21,21 +20,24 @@ def servercheck():
 		baseURL = 'http://legacy-textbook-qa.cnx.org/content/'
 		servername = 'Textbook-QA'
 	else:
-		validserver = False
 		print "try again, enter 1 or 2"
+
+def choosefile():
+	global inputfile
+	inputfile = raw_input ("Enter the name of your text input file (default is './input.txt'): ")
+	if inputfile == '':	inputfile = 'input.txt'
 
 #call the functions above
 while validserver == False:
 	chooseserver()
-	servercheck()
-
-inputfile = raw_input ("Enter the name of your text input file (default is './input.txt'): ")
-
-#Hit Enter without typing anything to assume input file named 'input.txt'
-if inputfile == '':	inputfile = 'input.txt'
-elif inputfile.lower() =='q': exit()
-
-buildlist = open(inputfile)
+choosefile()
+while validfile == False:
+	try:
+		buildlist = open(inputfile)
+		validfile = True
+	except:
+		print "Invalid file, try again"
+		choosefile()
 
 for each in buildlist:
 	collID = each.strip()
