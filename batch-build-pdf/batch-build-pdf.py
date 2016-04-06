@@ -9,6 +9,11 @@ def chooseserver():
 
 	if server.lower() =='q':
 		exit()
+	elif server == '':
+		validserver = True
+		print "Dev server chosen"
+		baseURL = 'http://legacy-textbook-dev.cnx.org/content/'
+		servername = 'Textbook-Dev'
 	elif server == '1':
 		validserver = True
 		print "Dev server chosen"
