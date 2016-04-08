@@ -23,9 +23,6 @@ VALID_SERVERS = [
 ]
 DEFAULT_SERVER = VALID_SERVERS[0]
 
-validserver = False
-validfile = False
-
 
 def chooseserver():
     server_lines = []
@@ -66,23 +63,27 @@ def choosefile():
             return inputfile
 
 
-# call the functions above
-name, servername, baseURL = chooseserver()
-inputfile = choosefile()
-with open(inputfile, 'r') as buildlist:
-    for line in buildlist:
-        collID = line.strip()
-        if collID.startswith('col') and len(collID) == 8 and collID[3:].isdigit():
-            buildurl = urljoin(baseURL, "{}/latest/enqueue".format(collID))
-            print("* " + collID + " enqueued on " + servername)
-        elif collID[0:4].isdigit() and len(collID) == 5:
-            buildurl = urljoin(baseURL + "/col" + "{}/latest/enqueue".format(collID))
-            print("* " + collID + " enqueued on " + servername)
-        else:
-            print("* Skipped collection " + collID + " due to incorrect formatting")
-            continue
-        response = requests.get(buildurl)
-        # Check for HTTP 200 Ok
-        if response.status_code != 200:
-            # Print to standard error, when the request was not successful.
-            print("* Failed to contact {}".format(buildurl), file=sys.stderr)
+def main(argv=None):
+    """Main commandline interface function"""
+    name, servername, baseURL = chooseserver()
+    inputfile = choosefile()
+    with open(inputfile, 'r') as buildlist:
+        for line in buildlist:
+            collID = line.strip()
+            if collID.startswith('col') and len(collID) == 8 and collID[3:].isdigit():
+                buildurl = urljoin(baseURL, "{}/latest/enqueue".format(collID))
+                print("* " + collID + " enqueued on " + servername)
+            elif collID[0:4].isdigit() and len(collID) == 5:
+                buildurl = urljoin(baseURL + "/col" + "{}/latest/enqueue".format(collID))
+                print("* " + collID + " enqueued on " + servername)
+            else:
+                print("* Skipped collection " + collID + " due to incorrect formatting")
+                continue
+            response = requests.get(buildurl)
+            # Check for HTTP 200 Ok
+            if response.status_code != 200:
+                # Print to standard error, when the request was not successful.
+                print("* Failed to contact {}".format(buildurl), file=sys.stderr)
+
+if __name__ == '__main__':
+    main()
