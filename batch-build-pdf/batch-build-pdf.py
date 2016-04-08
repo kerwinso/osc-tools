@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 import webbrowser
+try:
+    from urllib.parse import urljoin
+except ImportError:
+    from urlparse import urljoin
 
 
 validserver = False
@@ -53,10 +57,10 @@ while not validfile:
 for each in buildlist:
     collID = each.strip()
     if collID.startswith('col') and len(collID) == 8 and collID[3:].isdigit():
-        buildurl = baseURL + collID + "/latest/enqueue"
+        buildurl = urljoin(baseURL, "{}/latest/enqueue".format(collID))
         print "* " + collID + " enqueued on " + servername
     elif collID[0:4].isdigit() and len(collID) == 5:
-        buildurl = baseURL + "/col" + collID + "/latest/enqueue"
+        buildurl = urljoin(baseURL + "/col" + "{}/latest/enqueue".format(collID))
         print "* " + collID + " enqueued on " + servername
     else:
         print "* Skipped collection " + collID + " due to incorrect formatting"
