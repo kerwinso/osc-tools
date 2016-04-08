@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import webbrowser
+import requests
 try:
     from urllib.parse import urljoin
 except ImportError:
@@ -65,4 +65,6 @@ for each in buildlist:
     else:
         print "* Skipped collection " + collID + " due to incorrect formatting"
         continue
-    webbrowser.open(buildurl, new=0, autoraise=False)
+    response = requests.get(buildurl)
+    # Check for HTTP 200 Ok
+    assert response.status_code == 200, "Failed to contact {}".format(buildurl)
