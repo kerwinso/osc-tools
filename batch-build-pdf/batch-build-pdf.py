@@ -9,33 +9,46 @@ except ImportError:
 import requests
 
 
+# Define the unicode function for python3 compatiblity
+if getattr(__builtins__, 'unicode', None) is None:
+    def unicode(s):
+        return s
+
+
+VALID_SERVERS = [
+    # machine-name, human-name, base-url
+    ('dev', 'Textbook-Dev', 'http://legacy-textbook-dev.cnx.org/content/',),
+    ('qa', 'Textbook-QA', 'http://legacy-textbook-qa.cnx.org/content/',),
+]
+DEFAULT_SERVER = VALID_SERVERS[0]
+
 validserver = False
 validfile = False
 
 
 def chooseserver():
-    server = raw_input("Enter 1 for Textbook-Dev, 2 for Textbook-QA server, 'q' to quit: ")
+    server_lines = []
+    for i, (name, human_name, base_url) in enumerate(VALID_SERVERS):
+        line = "  {} for {} (at {})".format(i+1, human_name, base_url)
+        server_lines.append(line)
 
-    if server.lower() == 'q':
-        exit()
-    elif server == '':
-        validserver = True
-        print("Dev server chosen")
-        baseURL = 'http://legacy-textbook-dev.cnx.org/content/'
-        servername = 'Textbook-Dev'
-    elif server == '1':
-        validserver = True
-        print("Dev server chosen")
-        baseURL = 'http://legacy-textbook-dev.cnx.org/content/'
-        servername = 'Textbook-Dev'
-    elif server == '2':
-        validserver = True
-        print("QA server chosen")
-        baseURL = 'http://legacy-textbook-qa.cnx.org/content/'
-        servername = 'Textbook-QA'
-    else:
-        print("try again, enter 1 or 2")
-    return validserver, server, baseURL, servername
+    question = "Enter\n{}\nor 'q' to quit: ".format('\n'.join(server_lines))
+
+    while True:
+        server = unicode(raw_input(question))
+
+        if server.lower() == 'q':
+            sys.exit(0)
+        elif server == '':
+            return DEFAULT_SERVER
+        elif server.isnumeric():
+            i = int(server)
+            try:
+                return VALID_SERVERS[i-1]
+            except IndexError:
+                print("try again...")
+        else:
+            print("try again...")
 
 
 def choosefile():
@@ -44,9 +57,9 @@ def choosefile():
         inputfile = 'input.txt'
     return inputfile
 
+
 # call the functions above
-while not validserver:
-    validserver, server, baseURL, servername = chooseserver()
+name, servername, baseURL = chooseserver()
 inputfile = choosefile()
 while not validfile:
     try:
