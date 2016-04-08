@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+import os
 import sys
 try:
     from urllib.parse import urljoin
@@ -52,36 +53,36 @@ def chooseserver():
 
 
 def choosefile():
-    inputfile = raw_input("Enter the name of your text input file (default is './input.txt'): ")
-    if inputfile == '':
-        inputfile = 'input.txt'
-    return inputfile
+    default_inputfile = 'input.txt'
+    question = "Enter the name of your text input file (default is './{}'): " \
+               .format(default_inputfile)
+    while True:
+        inputfile = raw_input(question)
+        if inputfile == '':
+            inputfile = default_inputfile
+        if not os.path.exists(inputfile):
+            print("Invalid file, try again")
+        else:
+            return inputfile
 
 
 # call the functions above
 name, servername, baseURL = chooseserver()
 inputfile = choosefile()
-while not validfile:
-    try:
-        buildlist = open(inputfile)
-        validfile = True
-    except:
-        print("Invalid file, try again")
-        inputfile = choosefile()
-
-for each in buildlist:
-    collID = each.strip()
-    if collID.startswith('col') and len(collID) == 8 and collID[3:].isdigit():
-        buildurl = urljoin(baseURL, "{}/latest/enqueue".format(collID))
-        print("* " + collID + " enqueued on " + servername)
-    elif collID[0:4].isdigit() and len(collID) == 5:
-        buildurl = urljoin(baseURL + "/col" + "{}/latest/enqueue".format(collID))
-        print("* " + collID + " enqueued on " + servername)
-    else:
-        print("* Skipped collection " + collID + " due to incorrect formatting")
-        continue
-    response = requests.get(buildurl)
-    # Check for HTTP 200 Ok
-    if response.status_code != 200:
-        # Print to standard error, when the request was not successful.
-        print("* Failed to contact {}".format(buildurl), file=sys.stderr)
+with open(inputfile, 'r') as buildlist:
+    for line in buildlist:
+        collID = line.strip()
+        if collID.startswith('col') and len(collID) == 8 and collID[3:].isdigit():
+            buildurl = urljoin(baseURL, "{}/latest/enqueue".format(collID))
+            print("* " + collID + " enqueued on " + servername)
+        elif collID[0:4].isdigit() and len(collID) == 5:
+            buildurl = urljoin(baseURL + "/col" + "{}/latest/enqueue".format(collID))
+            print("* " + collID + " enqueued on " + servername)
+        else:
+            print("* Skipped collection " + collID + " due to incorrect formatting")
+            continue
+        response = requests.get(buildurl)
+        # Check for HTTP 200 Ok
+        if response.status_code != 200:
+            # Print to standard error, when the request was not successful.
+            print("* Failed to contact {}".format(buildurl), file=sys.stderr)
