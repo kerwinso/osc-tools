@@ -14,7 +14,6 @@ validfile = False
 
 
 def chooseserver():
-    global validserver, server, baseURL, servername
     server = raw_input("Enter 1 for Textbook-Dev, 2 for Textbook-QA server, 'q' to quit: ")
 
     if server.lower() == 'q':
@@ -36,26 +35,26 @@ def chooseserver():
         servername = 'Textbook-QA'
     else:
         print("try again, enter 1 or 2")
+    return validserver, server, baseURL, servername
 
 
 def choosefile():
-    global inputfile
     inputfile = raw_input("Enter the name of your text input file (default is './input.txt'): ")
     if inputfile == '':
         inputfile = 'input.txt'
-
+    return inputfile
 
 # call the functions above
 while not validserver:
-    chooseserver()
-choosefile()
+    validserver, server, baseURL, servername = chooseserver()
+inputfile = choosefile()
 while not validfile:
     try:
         buildlist = open(inputfile)
         validfile = True
     except:
         print("Invalid file, try again")
-        choosefile()
+        inputfile = choosefile()
 
 for each in buildlist:
     collID = each.strip()
