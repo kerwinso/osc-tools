@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
-import requests
+from __future__ import print_function
+import sys
 try:
     from urllib.parse import urljoin
 except ImportError:
     from urlparse import urljoin
+
+import requests
 
 
 validserver = False
@@ -18,21 +21,21 @@ def chooseserver():
         exit()
     elif server == '':
         validserver = True
-        print "Dev server chosen"
+        print("Dev server chosen")
         baseURL = 'http://legacy-textbook-dev.cnx.org/content/'
         servername = 'Textbook-Dev'
     elif server == '1':
         validserver = True
-        print "Dev server chosen"
+        print("Dev server chosen")
         baseURL = 'http://legacy-textbook-dev.cnx.org/content/'
         servername = 'Textbook-Dev'
     elif server == '2':
         validserver = True
-        print "QA server chosen"
+        print("QA server chosen")
         baseURL = 'http://legacy-textbook-qa.cnx.org/content/'
         servername = 'Textbook-QA'
     else:
-        print "try again, enter 1 or 2"
+        print("try again, enter 1 or 2")
 
 
 def choosefile():
@@ -51,20 +54,22 @@ while not validfile:
         buildlist = open(inputfile)
         validfile = True
     except:
-        print "Invalid file, try again"
+        print("Invalid file, try again")
         choosefile()
 
 for each in buildlist:
     collID = each.strip()
     if collID.startswith('col') and len(collID) == 8 and collID[3:].isdigit():
         buildurl = urljoin(baseURL, "{}/latest/enqueue".format(collID))
-        print "* " + collID + " enqueued on " + servername
+        print("* " + collID + " enqueued on " + servername)
     elif collID[0:4].isdigit() and len(collID) == 5:
         buildurl = urljoin(baseURL + "/col" + "{}/latest/enqueue".format(collID))
-        print "* " + collID + " enqueued on " + servername
+        print("* " + collID + " enqueued on " + servername)
     else:
-        print "* Skipped collection " + collID + " due to incorrect formatting"
+        print("* Skipped collection " + collID + " due to incorrect formatting")
         continue
     response = requests.get(buildurl)
     # Check for HTTP 200 Ok
-    assert response.status_code == 200, "Failed to contact {}".format(buildurl)
+    if response.status_code != 200:
+        # Print to standard error, when the request was not successful.
+        print("* Failed to contact {}".format(buildurl), file=sys.stderr)
