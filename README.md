@@ -8,4 +8,6 @@ Various tools and scripts for OpenStax:
 
 * MegaTool : Applescript to speed up common URL commands (enqueue, print info, view latest) on the textbook-dev server.
 
+* PDF Print Status (in progress): checked the locked status of a PDF on production 
+
 * QueueToolChooser: quickly load the queue tool on your server of choice.
