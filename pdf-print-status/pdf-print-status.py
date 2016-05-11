@@ -21,10 +21,3 @@ for each in idlist:
     stmsgs.append(statusmsg)
 
 #print len(stmsgs)
- 
-
-    # string match check
-    #if spanlist[7] == 'succeeded':
-    #  print "oK"
-    #else:
-    #  print "uh oh"
