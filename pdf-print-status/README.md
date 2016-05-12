@@ -1,0 +1,1 @@
+[Link to install Beautiful Soup 4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
