@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 inputfile = 'IDs.txt'
 idlist = open(inputfile)
 
-stmsgs = []
+#stmsgs = []
 
 for each in idlist:
   collID = each.strip()
@@ -18,6 +18,6 @@ for each in idlist:
     status = span.string
     statusmsg = "Process status for col" + collID + ": " + status
     print statusmsg
-    stmsgs.append(statusmsg)
+ #   stmsgs.append(statusmsg)
 
 #print len(stmsgs)
