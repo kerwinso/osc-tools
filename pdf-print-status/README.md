@@ -1,6 +1,6 @@
 # Dependencies:
 
-[Link to install Beautiful Soup 4:](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
+[Install Beautiful Soup 4:](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
 
 `pip install beautifulsoup4` or `sudo easy_install beautifulsoup4`
 
@@ -12,9 +12,7 @@ You will also need to install [yagmail](https://github.com/kootenpv/yagmail):
 
 `pip install yagmail` or `sudo easy_install yagmail`
 
-Yagmail uses the keyring lib to securely save your password on your machine -- not inside the script where anyone can read it. 
-
-To set this up, and to test if yagmail is working on your machine, you can run yagtest.py:
+Yagmail uses the keyring lib to securely save your password on your machine -- not inside the script where anyone can read it. To set this up, and to test if yagmail is working on your machine, you can run yagtest.py:
 
 `python yagtest.py`
 

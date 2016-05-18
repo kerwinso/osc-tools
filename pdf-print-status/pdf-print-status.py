@@ -1,12 +1,9 @@
 import urllib
 import datetime
-# Install BS4 first:
-# https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
 from bs4 import BeautifulSoup
-#install yagmail first: pip install yagmail or easy_install yagmail
 import yagmail
 
-# List of email recipients must be formatted like this: 
+# List of email recipients must be formatted in a list like this: 
 # ['email1@host.com','email2@host.com']
 to = ['ks52@rice.edu', 'brw5@rice.edu']
 
@@ -26,11 +23,15 @@ def ymail():
     ]
     yag.send(to, 'PDFs not locked on production: '+str(today), contents)   
 
-# Define input file and file handle for the loop below
-inputfile = 'IDs.txt'
-idlist = open(inputfile)
+# List of all collectionIDs on production
+idlist = [
+    '11406', '11407', '11448', '11487', '11707', '11496', '11613', '11626', '11627', 
+    '11562', '11667', '11629', '11740', '11760', '11758', '11762', '11756', '11759', 
+    '11963', '11964', '11965', '11966', '11844', '11858', '11864', '11994'
+    ] 
 
 # Create empty lists to store status messages for the email notification
+# First list: all status messages. Second list: just the unlocked PDFs.
 stmsgs = []
 unlocked = []
 
