@@ -30,7 +30,7 @@ idlist = [
     '11963', '11964', '11965', '11966', '11844', '11858', '11864', '11994'
     ] 
 
-# Create empty lists to store status messages for the email notification
+# Create empty lists to store status messages for the email notification.
 # First list: all status messages. Second list: just the unlocked PDFs.
 stmsgs = []
 unlocked = []
