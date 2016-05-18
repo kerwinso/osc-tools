@@ -17,3 +17,7 @@ Yagmail uses the keyring lib to securely save your password on your machine -- n
 `python yagtest.py`
 
 When executed, it will prompt you for the password for os content qa @ gmail . com, after which you can save it. The program will then send a test email to the address(es) listed in `yag.send()`.
+
+# Additional tips
+
+Check the [wiki](https://github.com/kerwinso/osc-tools/wiki/).
