@@ -11,7 +11,6 @@ You will also need to install [yagmail](https://github.com/kootenpv/yagmail):
 
 `pip install yagmail` or `sudo easy_install yagmail`
 
-<<<<<<< HEAD
 ## Yagmail Setup
 Yagmail uses the keyring lib to securely save your password on your machine -- not inside the script where anyone can read it. To set this up, and to test if yagmail is working on your machine, you can run *yagtest.py*:
 
