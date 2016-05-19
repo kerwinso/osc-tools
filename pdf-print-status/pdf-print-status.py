@@ -48,7 +48,8 @@ for each in idlist:
   for s in soup.find_all('div','status'):
     span = s.find('span','data')
     status = span.string
-    statusmsg = "Process status for col" + collID + ": " + status
+    tstamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+    statusmsg = tstamp + ": Process status for col" + collID + ": " + status
     print statusmsg
     stmsgs.append(statusmsg)
 
