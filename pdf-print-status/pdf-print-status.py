@@ -26,9 +26,10 @@ def ymail():
 
 # List of all collectionIDs on production
 idlist = [
-    '11406', '11407', '11448', '11487', '11707', '11496', '11613', '11626', '11627', 
-    '11562', '11667', '11629', '11740', '11760', '11758', '11762', '11756', '11759', 
-    '11963', '11964', '11965', '11966', '11844', '11858', '11864', '11994'
+    '11406', '11407', '11448', '11487', '11496', '11562', '11613', '11626', 
+    '11627', '11629', '11667', '11707', '11740', '11756', '11758', '11759', 
+    '11760', '11762', '11844', '11858', '11864', '11963', '11964', '11965', 
+    '11966', '11994'
     ] 
 
 # Create empty lists to store status messages for the email notification.
@@ -57,6 +58,9 @@ for each in idlist:
         unlocked.append(collID)
 
 print "Number of unlocked PDFs: "+str(len(unlocked))+". Sending email to "+ str(', '.join(to)) + "..."
+
+unlocked.sort()
+stmsgs.sort()
 
 if len(unlocked) > 0:
     ymail()
