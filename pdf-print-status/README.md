@@ -1,3 +1,6 @@
+##Overview
+This script checks the print/process status of all the OS-authored collections on production, and sends an email notification to a DMS if any PDFs do not have a "locked" status.
+
 ## Dependencies
 [Install Beautiful Soup 4:](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
 
