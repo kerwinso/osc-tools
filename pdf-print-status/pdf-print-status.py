@@ -57,10 +57,11 @@ for each in idlist:
     if status != "locked":
         unlocked.append(collID)
 
-print "Number of unlocked PDFs: "+str(len(unlocked))+". Sending email to "+ str(', '.join(to)) + "..."
+print "Number of unlocked PDFs: "+str(len(unlocked))
 
 unlocked.sort()
 stmsgs.sort()
 
 if len(unlocked) > 0:
+    print "Sending email to "+ str(', '.join(to)) + "..."
     ymail()
