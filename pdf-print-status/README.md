@@ -1,5 +1,7 @@
 ##Overview
-This script checks the print/process status of all the OS-authored collections on production, and sends an email notification to a DMS if any PDFs do not have a "locked" status.
+This script checks the print/process status of all the OS-authored collections on production, and sends an email notification to a DMS if any PDFs do not have a "locked" status. 
+
+The email notification can be scheduled as a "cron job" (actually a launchd job), check the [launchd scheduling wiki page](https://github.com/kerwinso/osc-tools/wiki/Scheduling-pdf-print-status-to-run-in-the-background-%28OS-X%29) for more details.
 
 ## Dependencies
 [Install Beautiful Soup 4:](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
