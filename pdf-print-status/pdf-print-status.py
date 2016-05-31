@@ -1,4 +1,4 @@
-#!/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+#!/usr/bin/python
 import urllib
 import datetime
 from bs4 import BeautifulSoup
