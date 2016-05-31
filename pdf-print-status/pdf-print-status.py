@@ -6,7 +6,7 @@ import yagmail
 
 # List of email recipients must be formatted in a list like this: 
 # ['email1@host.com','email2@host.com']
-to = ['ks52@rice.edu', 'brw5@rice.edu']
+to = ['ks52@rice.edu', 'brw5@rice.edu', 'nyxer@rice.edu']
 
 # Email notification; only gets called if there's an un-locked PDF on production
 def ymail():
