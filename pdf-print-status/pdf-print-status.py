@@ -1,4 +1,4 @@
-#!/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+#!/usr/bin/python
 import urllib
 import datetime
 from bs4 import BeautifulSoup
@@ -25,12 +25,34 @@ def ymail():
     yag.send(to, 'PDFs not locked on production: '+str(today), contents)   
 
 # List of all collectionIDs on production
-idlist = [
-    '11406', '11407', '11448', '11487', '11496', '11562', '11613', '11626', 
-    '11627', '11629', '11667', '11707', '11740', '11756', '11758', '11759', 
-    '11760', '11762', '11844', '11858', '11864', '11963', '11964', '11965', 
-    '11966', '11994'
-    ] 
+booklist = {
+    '11406':'College Physics',
+    '11407':'Introduction to Sociology',
+    '11448':'Biology',
+    '11487':'Concepts of Biology',
+    '11496':'Anatomy & Physiology',
+    '11562':'Statistics',
+    '11613':'Economics',
+    '11626':'Macroeconomics',
+    '11627':'Microeconomics',
+    '11629':'Psychology',
+    '11667':'Precalculus',
+    '11707':'Concepts of Biology - Spanish',
+    '11740':'US History',
+    '11756':'Basic Math (Prealgebra)',
+    '11758':'Algebra & Trigonometry',
+    '11759':'College Algebra',
+    '11760':'Chemistry',
+    '11762':'Sociology 2e',
+    '11844':'AP Physics',
+    '11858':'AP Micro Economics',
+    '11864':'AP Macro Economics',
+    '11963':'Calculus (full)',
+    '11964':'Calculus (vol. 1)',
+    '11965':'Calculus (vol. 2)',
+    '11966':'Calculus (vol. 3)',
+    '11994':'University Physics'
+    }
 
 # Create empty lists to store status messages for the email notification.
 # First list: all status messages. Second list: just the unlocked PDFs.
@@ -41,27 +63,29 @@ unlocked = []
 # statuses are anything other than "locked", it will send an email notification 
 # with a list of unlocked PDFs, as well as the full list of status messages 
 # for every collection in the input file.
-for each in idlist:
-  collID = each.strip()
-  url = 'http://legacy.cnx.org/content/col'+collID+'/latest/printinfo'
-  html = urllib.urlopen(url).read()
-  soup = BeautifulSoup(html, "lxml")
-  for s in soup.find_all('div','status'):
-    span = s.find('span','data')
-    status = span.string
-    tstamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
-    statusmsg = tstamp + ": Process status for col" + collID + ": " + status
-    print statusmsg
-    stmsgs.append(statusmsg)
+
+for collID,title in sorted(booklist.items()):
+    url = 'http://legacy.cnx.org/content/col'+collID+'/latest/printinfo'
+    html = urllib.urlopen(url).read()
+    soup = BeautifulSoup(html, "lxml")
+    for s in soup.find_all('div','status'):
+        span = s.find('span','data')
+        status = span.string
+        timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+        statusmsg = timestamp + ": Process status for col" + collID + " (" + \
+            title + "): " + status
+        print (statusmsg)
+        stmsgs.append(statusmsg)
 
     if status != "locked":
-        unlocked.append(collID)
+        book = collID + " " + title
+        unlocked.append(book)
 
-print "Number of unlocked PDFs: "+str(len(unlocked))
+print ("Number of unlocked PDFs: "+str(len(unlocked)))
 
 unlocked.sort()
 stmsgs.sort()
 
 if len(unlocked) > 0:
-    print "Sending email to "+ str(', '.join(to)) + "..."
+    print ("Sending email to "+ str(', '.join(to)) + "...")
     ymail()
