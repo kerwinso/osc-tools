@@ -12,6 +12,8 @@
 
 * QueueToolChooser: Applescript to quickly load the queue tool on your server of choice.
 
+* [URL Commands Dashboard](http://ks52.web.rice.edu/urlcommands.html) (web-based alternative to GigaTool)
+
 ##How to get this repo on your local machine (OS X):
 
 1. In Terminal, go to your Documents directory: `cd ~/Documents`
