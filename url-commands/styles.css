@@ -1,0 +1,79 @@
+body {
+  font-family: Noto Sans, Helvetica, sans-serif;
+  font-size: 14px;
+}
+h1 {
+  font-family: Roboto Slab, serif;
+}
+h2 {
+  font-size: 1.2em;
+}
+.title {
+  color: #5E6062;
+  padding-left: 50px;
+}
+.big {
+  font-size: 1.2em;
+}
+.logins {
+  padding-left: 60px;
+}
+a.logins {
+  color: #5E6062;
+  font-weight: bold;
+  text-decoration: underline;
+}
+a.logins:hover {
+  text-decoration: none;
+  background-color: transparent;
+}
+.servername {
+  color: #002469;
+}
+a.servername {
+  color: #002469;
+  text-decoration: underline;
+}
+a.servername:hover {
+  text-decoration: none;
+  background-color: transparent;
+}
+.command {
+  color: #77AF42;
+  text-decoration: underline;
+}
+.command:hover {
+  text-decoration: none;
+  color: #F47641;
+  cursor: pointer;
+}
+
+// For 2 column layout
+#container {
+  width: 800px;
+}
+.column-left {
+  width: 300px;
+  float: left;
+  padding-left: 5px;
+}
+.column-right {
+  display: inline-block;
+}
+.clear {
+  clear: both;
+}
+
+// OpenStax palette colors from brand book
+.osblue {
+  color: #002469;
+}
+.osgreen {
+  color: #77AF42;
+}
+.osgray {
+  color: #5E6062;
+}
+.osorange {
+  color: #F47641;
+}
