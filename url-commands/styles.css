@@ -15,15 +15,17 @@ h2 {
 .big {
   font-size: 1.2em;
 }
-.logins {
-  padding-left: 60px;
+.toplinks {
+  margin-left: 40px;
+  margin-top: -10px;
+  font-size: 0.93em;
 }
-a.logins {
+a.toplinks {
   color: #5E6062;
-  font-weight: bold;
+  font-weight: normal;
   text-decoration: underline;
 }
-a.logins:hover {
+a.toplinks:hover {
   text-decoration: none;
   background-color: transparent;
 }
