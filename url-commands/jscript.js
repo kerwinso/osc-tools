@@ -34,6 +34,10 @@ function checkserver(x) {
     baseurl = "http://legacy-staging5.cnx.org/content/";
     //alert("staging5 found " + baseurl);
   }
+  if (x.contains("cte")) {
+    baseurl = "http://legacy-cte-cnx-dev.cnx.org/content/";
+    //alert("CTE found " + baseurl);
+  }
 }
 
 // Check if collectionID is valid and starts with a letter
@@ -171,7 +175,7 @@ function versionhistory(x) {
 }
 
 function printparameters(x) {
-  alert ("If you update the parameters, don't forget to add \n\n \t /setState?value=public \n\n to the URL afterwards!");
+  alert ("Warning: Use this to look up a parameter only, NOT to update it!");
   checkserver(x);
   enterCID();
   if (!emptyID && startswithletter) {

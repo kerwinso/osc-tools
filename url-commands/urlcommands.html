@@ -10,9 +10,9 @@
   <h1 class="title">URL Commands Dashboard</h1>
   <div id="container">
 
-  <div class="toplinks"><a class="toplinks" href="https://docs.google.com/document/d/1zuI2a4ddkngxvH0HgnpiHe28c34kPHk4sgzo4aBfzDQ/edit#heading=h.exariqofiypd">
-    Servers and logins</a> <a class="toplinks" href="https://docs.google.com/spreadsheets/d/11CGHo9aVPjCnB7bce4BVlhaOwW9LE1gBCxGgAmTbSvg/edit#gid=0">Original commands sheet</a>
-  </div>
+    <div class="toplinks"><a class="toplinks" href="https://docs.google.com/document/d/1zuI2a4ddkngxvH0HgnpiHe28c34kPHk4sgzo4aBfzDQ/edit#heading=h.exariqofiypd">
+      Servers and logins</a> <a class="toplinks" href="https://docs.google.com/spreadsheets/d/11CGHo9aVPjCnB7bce4BVlhaOwW9LE1gBCxGgAmTbSvg/edit#gid=0">Original commands sheet</a>
+    </div>
 
     <div class="column-left">
       <h2><a class="servername" href="http://legacy-textbook-dev.cnx.org/">Textbook-Dev</a></h2>
@@ -69,6 +69,20 @@
         <li><span class="command staging4" onclick="versionhistory(this.classList)">version history</span></li>
         <li><span class="command staging4" onclick="printparameters(this.classList)">print parameters</span></li>
         <li><em><a class="command" href="http://legacy-staging4.cnx.org/queue_tool/manage_overview?trigger=Refresh">Queue Tool</a></em></li>
+      </ul>
+
+      <h2><a class="servername" href="http://legacy-cte-cnx-dev.cnx.org/">CTE</a></h2>
+      <ul>
+        <li><span class="command cte" onclick="enqueue(this.classList)">enqueue</span></li>
+        <li><span class="command cte" onclick="latest(this.classList)">latest</span></li>
+        <li><span class="command cte" onclick="qptool(this.classList)">query_ptool</span></li>
+        <li><span class="command cte" onclick="printinfo(this.classList)">printinfo</span></li>
+        <li><span class="command cte" onclick="source(this.classList)">source (module)</span></li>
+        <li><span class="command cte" onclick="completezip(this.classList)">complete zip</span></li>
+        <li><span class="command cte" onclick="downloadPDF(this.classList)">pdf</span></li>
+        <li><span class="command cte" onclick="versionhistory(this.classList)">version history</span></li>
+        <li><span class="command cte" onclick="printparameters(this.classList)">print parameters</span></li>
+        <li><em><a class="command" href="http://legacy-cte-cnx-dev.cnx.org/queue_tool/manage_overview?trigger=Refresh">Queue Tool</a></em></li>
       </ul>
     </div>
 
@@ -128,15 +142,12 @@
         <li><span class="command staging5" onclick="printparameters(this.classList)">print parameters</span></li>
         <li><em><a class="command" href="http://legacy-staging5.cnx.org/queue_tool/manage_overview?trigger=Refresh">Queue Tool</a></em></li>
       </ul>
-
-
-
     </div>
 
     <div class="clear">
       <p>
         <br />
-      <!-- insert whatever text here to span the full width of the page -->
+        <!-- insert whatever text here to span the full width of the page -->
       </p>
     </div>
   </div>
