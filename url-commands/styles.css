@@ -8,6 +8,15 @@ h1 {
 h2 {
   font-size: 1.2em;
 }
+ul {
+  margin-top: -12px;
+  margin-left: -22px;
+  margin-bottom: 20px;
+  list-style-type: circle;
+}
+div li {
+  text-indent: -3px;
+}
 .title {
   color: #5E6062;
   padding-left: 50px;
