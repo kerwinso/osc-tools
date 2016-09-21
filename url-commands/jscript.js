@@ -123,15 +123,21 @@ function printinfo(x) {
 }
 
 function source(x) {
-  checkserver(x);
-  enterCID();
-  if (!emptyID && startswithletter) {
-    window.open(baseurl + colID + "/latest/source", "_self");
-    validID = false;
+  var browser = navigator.userAgent;
+  if (browser.search("Chrome") == -1) {
+    alert ("Sorry, this feature only works in the Chrome browser");
   }
-  if (!emptyID && !startswithletter) {
-    window.open(baseurl + "col" + colID + "/latest/source", "_self");
-    validID = false;
+  else {
+    checkserver(x);
+    enterCID();
+    if (!emptyID && startswithletter) {
+      window.open(baseurl + colID + "/latest/source", "_self");
+      validID = false;
+    }
+    if (!emptyID && !startswithletter) {
+      window.open(baseurl + "col" + colID + "/latest/source", "_self");
+      validID = false;
+    }
   }
 }
 
