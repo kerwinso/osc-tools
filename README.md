@@ -21,3 +21,4 @@
 This will copy all the files in this repo to your machine and put them in a folder called _ost-tools_ inside your _Documents_ folder.
 1. To get the latest version of this repo's files, enter `cd ~/Documents/ost-tools` and enter the command `git pull`.
   * **Note:** Doing a `git pull` may overwrite the files on your local machine. This will affect the cron job (launchd job) for _pdf-print-status_, refer to [this wiki page](https://github.com/kerwinso/ost-tools/wiki/Scheduling-pdf-print-status-to-run-in-the-background-%28OS-X%29) for more details.
+  
