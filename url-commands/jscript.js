@@ -44,7 +44,7 @@ function checkserver(x) {
 function enterCID() {
   while (!validID) {
     input = prompt("Enter a collection or module ID");
-    colID = input.trim();
+    colID = input.trim().toLowerCase();
     if (colID === null || colID === "" ) { //handles the Cancel button in the Prompt
       emptyID = true;
       break;
