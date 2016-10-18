@@ -6,7 +6,7 @@ import yagmail
 
 # List of email recipients must be formatted in a list like this: 
 # ['email1@host.com','email2@host.com']
-to = ['ks52@rice.edu', 'brw5@rice.edu', 'nyxer@rice.edu']
+to = ['ks52@rice.edu', 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu', 'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu']
 
 # Email notification; only gets called if there's an un-locked PDF on production
 def ymail():
@@ -26,6 +26,13 @@ def ymail():
 
 # List of all collectionIDs on production
 booklist = {
+    '12012':'Chemisty Atoms First',
+    '12074':'University Physics Volume 2',
+    '12067':'University Physics Volume 3',
+    '12031':'University Physics Volume 1',
+    '11776':'OU Business Statistics',
+    '11756':'Prealgebra',
+    '11995':'American Government',
     '11406':'College Physics',
     '11407':'Introduction to Sociology',
     '11448':'Biology',
@@ -37,9 +44,7 @@ booklist = {
     '11627':'Microeconomics',
     '11629':'Psychology',
     '11667':'Precalculus',
-    '11707':'Concepts of Biology - Spanish',
     '11740':'US History',
-    '11756':'Basic Math (Prealgebra)',
     '11758':'Algebra & Trigonometry',
     '11759':'College Algebra',
     '11760':'Chemistry',
@@ -51,7 +56,14 @@ booklist = {
     '11964':'Calculus (vol. 1)',
     '11965':'Calculus (vol. 2)',
     '11966':'Calculus (vol. 3)',
-    '11994':'University Physics'
+    '11913':'Concepts of Biology for Concept Coach',
+    '11914':'College Physics for Concept Coach',
+    '11912':'Microeconomics for Concept Coach',
+    '11915':'Macroeconomics for Concept Coach',
+    '11910':'Principles of Economics for Concept Coach',
+    '11918':'Biology for Concept Coach',
+    '11917':'Anatomy & Physiology for Concept Coach',
+    '11933':'Introduction to Sociology 2e for Concept Coach'
     }
 
 # Create empty lists to store status messages for the email notification.
@@ -62,7 +74,7 @@ unlocked = []
 # Looks up each printinfo URL and collects status info. If any of the 
 # statuses are anything other than "locked", it will send an email notification 
 # with a list of unlocked PDFs, as well as the full list of status messages 
-# for every collection in the input file.
+# for every collection in the booklist.
 
 for collID,title in sorted(booklist.items()):
     url = 'http://legacy.cnx.org/content/col'+collID+'/latest/printinfo'
