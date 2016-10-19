@@ -1,4 +1,4 @@
-##Various tools and scripts for OpenStax:
+##Various tools and scripts for OpenStax Content QA:
 
 * batch-build-pdf (Python): Enqueue a batch of PDF files on the CNX legacy editor (textbook-dev or textbook-QA).
 
