@@ -70,6 +70,27 @@ function enterCID() {
   }
 }
 
+
+function enterMID() {
+  while (!validID) {
+    input = prompt("Enter a module ID");
+    mID = input.trim().toLowerCase();
+    if (mID === null || mID === "" ) { //handles the Cancel button in the Prompt
+      emptyID = true;
+      break;
+    }
+    if (mID.length == 6 && mID.indexOf("m") == 0) {
+      validID = true;
+      startswithletter = true;
+      emptyID = false;
+    }
+    else {
+      alert("Invalid module ID format, click OK to try again");
+    }
+  }
+}
+
+// Link command functions below
 function enqueue(x) {
   checkserver(x);
   enterCID();
@@ -122,6 +143,7 @@ function printinfo(x) {
   }
 }
 
+
 function source(x) {
   var browser = navigator.userAgent;
   if (browser.search("Chrome") == -1) {
@@ -129,17 +151,14 @@ function source(x) {
   }
   else {
     checkserver(x);
-    enterCID();
-    if (!emptyID && startswithletter) {
-      window.open(baseurl + colID + "/latest/source", "_self");
-      validID = false;
-    }
-    if (!emptyID && !startswithletter) {
-      window.open(baseurl + "col" + colID + "/latest/source", "_self");
+    enterMID();
+    if (!emptyID) {
+      window.open(baseurl + mID + "/latest/source", "_self");
       validID = false;
     }
   }
 }
+
 
 function completezip(x) {
   checkserver(x);
