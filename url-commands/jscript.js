@@ -35,7 +35,7 @@ function checkserver(x) {
     //alert("staging5 found " + baseurl);
   }
   if (x.contains("cte")) {
-    baseurl = "http://legacy-cte-cnx-dev.cnx.org/content/";
+    baseurl = "http://legacy-dev00.cnx.org/content/";
     //alert("CTE found " + baseurl);
   }
 }
@@ -156,6 +156,19 @@ function source(x) {
       window.open(baseurl + mID + "/latest/source", "_self");
       validID = false;
     }
+  }
+}
+
+function downloads(x) {
+  checkserver(x);
+  enterCID();
+  if (!emptyID && startswithletter) {
+    window.open(baseurl + colID + "/latest/content_info#cnx_downloads_header", "_self");
+    validID = false;
+  }
+  if (!emptyID && !startswithletter) {
+    window.open(baseurl + "col" + colID + "/latest/content_info#cnx_downloads_header", "_self");
+    validID = false;
   }
 }
 
