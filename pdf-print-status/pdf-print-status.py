@@ -81,9 +81,9 @@ for collID,title in sorted(booklist.items()):
     url = 'http://legacy.cnx.org/content/col'+collID+'/latest/printinfo'
     html = urllib.urlopen(url).read()
     soup = BeautifulSoup(html, "lxml")
-    for s in soup.find_all('div','status'):
-        span = s.find('span','data')
-        status = span.string
+    for s in soup.find_all('div','status'): #finds all the <div> tags with class="span"
+        span = s.find('span','data') #within those <div>s, finds the <span> tags with class="data"
+        status = span.string #text value within the variable "span"
         timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
         statusmsg = timestamp + ": Process status for col" + collID + " (" + \
             title + "): " + status
