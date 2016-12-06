@@ -10,5 +10,5 @@ Finds a CNX book ID by title via automated web browser.
 ####Install Homebrew by following the instructions at [http://brew.sh](http://brew.sh/).
 
 
-####Install Chromedriver:
+####Install Chromedriver after installing Homebrew:
 `brew install chromedriver`
