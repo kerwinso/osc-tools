@@ -45,8 +45,8 @@ books = [
 
 book = ''
 while not book:
-    book = raw_input("Enter the exact name of the book (hit Return for book list):  ")
-    book = book.title().strip()
+    book = raw_input("Enter the EXACT name of the book (hit Return for book list):  ")
+    book = book.strip()
 
     if book not in books:
         print('Book not found. Valid book titles are: ')
