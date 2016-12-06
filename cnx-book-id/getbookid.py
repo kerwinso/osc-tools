@@ -3,7 +3,7 @@ Get the book id for cnx-archive-export_epub:
 - Open cte-cnx-dev.cnx.org
 - Navigate to the book
 - Expand "more info" tab at the bottom.
-- Copy the id for use in the next step
+- Copy the id for use in whatever is next.
 """
 
 from selenium import webdriver
@@ -15,51 +15,74 @@ def addToClipBoard(text):
     command = 'echo ' + text.strip() + '| pbcopy'
     os.system(command)
 
+books = [
+    'Algebra and Trigonometry',
+    'American Government',
+    'Anatomy & Physiology',
+    'Biology',
+    'Calculus Volume 1',
+    'Calculus Volume 2',
+    'Calculus Volume 3',
+    'Chemistry',
+    'Chemistry: Atoms First',
+    'College Algebra',
+    'College Physics For AP Courses',
+    'College Physics',
+    'Concepts of Biology',
+    'Introduction to Sociology',
+    'Introduction to Sociology 2e',
+    'Introductory Statistics',
+    'Macroeconomics',
+    'Microeconomics',
+    'Prealgebra',
+    'Precalculus',
+    'Principles of Economics',
+    'Principles of Macroeconomics for AP Courses',
+    'Principles of Microeconomics for AP Courses',
+    'Psychology',
+    'U.S. History'
+         ]
 
 book = ''
 while not book:
-    book = raw_input("Enter the number of the book: \n \
-        1 - Intro to Soc 2e \n \
-        2 - College Physics \n : ")
+    book = raw_input("Enter the exact name of the book (hit Return for book list):  ")
+    book = book.title().strip()
 
-    if book == '1':
-        book = "Introduction to Sociology 2e"
-        print "Soc 2e selected, launching browser..."
-    elif book == '2':
-        book = "College Physics"
-        print "College Physics selected, launching browser..."
-    else:
-        print "invalid input, try again"
+    if book not in books:
+        print('Book not found. Valid book titles are: ')
+        for b in books:
+            print ('\t%s' % b)
+        print ('\n')
         book = False
+        continue
+    else:
+        print("Browser launching to search for: '%s'" % book)
+        print("(browser will quit itself when finished)")
 
-# adding FF profile removes the 'NoneType' object has no attribute 'path' error when quitting driver
-profile = webdriver.FirefoxProfile()
-
-# requires geckodriver: `brew install geckodriver`
-driver = webdriver.Firefox(firefox_profile=profile)
+# requires chromedriver: install homebrew, then `brew install chromedriver`
+driver = webdriver.Chrome()
 
 try:
     driver.get("http://cte-cnx-dev.cnx.org/")
     driver.implicitly_wait(30)
 
-    link = driver.find_element_by_partial_link_text(book)
+    link = driver.find_element_by_link_text(book)
     link.click()
 
-    # find the More Info tab, click on it
+    # find the More Information tab, click on it
     driver.implicitly_wait(30)
     moreinfo = driver.find_element_by_id('metadata-tab')
     moreinfo.click()
 
-    # find the cnx book id
+    # find the cnx book ID under the book name
     idpath = driver.find_element_by_xpath("//dl[@class='dl-horizontal']/dd[2]")
     bookid = idpath.text
 
     addToClipBoard(bookid)
 
-    print ('Your book ID for %s is %s.\n'
+    print ('Book ID for %s is %s.\n'
            'It has also been copied to your system clipboard (Cmd+V).' % (book, bookid))
-
 except:
-    raise Exception('Something went wrong. Check your spelling and connection.')
+    raise Exception('Something went wrong. Check your Internet or server connection.')
 finally:
     driver.quit()
