@@ -1,72 +1,60 @@
+"""
+Get the book id for cnx-archive-export_epub:
+- Open cte-cnx-dev.cnx.org
+- Navigate to the book
+- Expand "more info" tab at the bottom.
+- Copy the id for use in the next step
+"""
+
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.support.ui import WebDriverWait # available since 2.4.0
-from selenium.webdriver.support import expected_conditions as EC # available since 2.26.0
-#from selenium.webdriver.common.by import By
+import os
+
+
+# Mac OS X only
+def addToClipBoard(text):
+    command = 'echo ' + text.strip() + '| pbcopy'
+    os.system(command)
+
 
 book = ''
 while not book:
-	book = raw_input("Enter the number of the book: \n \
-		1 - Intro to Soc 2e \n \
-		2 - College Physics \n : ")
+    book = raw_input("Enter the number of the book: \n \
+        1 - Intro to Soc 2e \n \
+        2 - College Physics \n : ")
 
-	if book == '1':
-		book = "Introduction to Sociology 2e"
-		print "Soc 2e selected, launching browser..."
-	elif book == '2':
-		book = "College Physics"
-		print "College Physics selected, launching browser..."
-	else:
-		print "invalid input, try again"
-		book = False
+    if book == '1':
+        book = "Introduction to Sociology 2e"
+        print "Soc 2e selected, launching browser..."
+    elif book == '2':
+        book = "College Physics"
+        print "College Physics selected, launching browser..."
+    else:
+        print "invalid input, try again"
+        book = False
 
-profile = webdriver.FirefoxProfile()  
-#adding the profile removes the "'NoneType' object has no 
-#attribute 'path'"" error when quitting driver
+# adding FF profile removes the 'NoneType' object has no attribute 'path' error when quitting driver
+profile = webdriver.FirefoxProfile()
 
+# requires geckodriver: `brew install geckodriver`
 driver = webdriver.Firefox(firefox_profile=profile)
 
-#driver = webdriver.Firefox() #old driver definition
-
 driver.get("http://cte-cnx-dev.cnx.org/")
-driver.implicitly_wait(10) #need to test with explicit wait
+driver.implicitly_wait(30)
 
 link = driver.find_element_by_partial_link_text(book)
 link.click()
 
-driver.implicitly_wait(5)
+# find the More Info tab, click on it
+driver.implicitly_wait(30)
 moreinfo = driver.find_element_by_id('metadata-tab')
 moreinfo.click()
 
-bookid = driver.find_element_by_xpath("//dl[@class='dl-horizontal']/dd[2]")
+# find the cnx book id
+idpath = driver.find_element_by_xpath("//dl[@class='dl-horizontal']/dd[2]")
+bookid = idpath.text
 
+addToClipBoard(bookid)
 
-print 'Your book ID for %s: %s' % (book, bookid.text) 
-
-'''
-try:
-	element = WebDriverWait(driver,10).until(
-		EC.presence_of_element_located((By.LINK_TEXT,'College Physics'))
-		)
-finally:
-	driver.quit()
-
-elem.clear()
-elem.send_keys("pycon")
-elem.send_keys(Keys.RETURN)
-assert "No results found." not in driver.page_source
-'''
-
-'''
-# subjects = driver.find_element(By.LINK_TEXT, "Subjects")
-subjects = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.LINK_TEXT, "About Us"))
-    )
-subjects.Click();
-
-#driver.FindElement(By.LinkText("Subjects")).Click();
-'''
-
-#driver.close()
+print ('Your book ID for %s is %s. It has also been copied to your system clipboard (Cmd+V).' % (book, bookid))
 
 driver.quit()
