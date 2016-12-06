@@ -100,5 +100,5 @@ unlocked.sort()
 stmsgs.sort()
 
 if len(unlocked) > 0:
-    print ("Sending email to "+ str(', '.join(to)) + "...")
+    print("Sending email to "+ str(', '.join(to)) + "...")
     ymail()

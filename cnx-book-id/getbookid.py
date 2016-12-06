@@ -38,23 +38,28 @@ profile = webdriver.FirefoxProfile()
 # requires geckodriver: `brew install geckodriver`
 driver = webdriver.Firefox(firefox_profile=profile)
 
-driver.get("http://cte-cnx-dev.cnx.org/")
-driver.implicitly_wait(30)
+try:
+    driver.get("http://cte-cnx-dev.cnx.org/")
+    driver.implicitly_wait(30)
 
-link = driver.find_element_by_partial_link_text(book)
-link.click()
+    link = driver.find_element_by_partial_link_text(book)
+    link.click()
 
-# find the More Info tab, click on it
-driver.implicitly_wait(30)
-moreinfo = driver.find_element_by_id('metadata-tab')
-moreinfo.click()
+    # find the More Info tab, click on it
+    driver.implicitly_wait(30)
+    moreinfo = driver.find_element_by_id('metadata-tab')
+    moreinfo.click()
 
-# find the cnx book id
-idpath = driver.find_element_by_xpath("//dl[@class='dl-horizontal']/dd[2]")
-bookid = idpath.text
+    # find the cnx book id
+    idpath = driver.find_element_by_xpath("//dl[@class='dl-horizontal']/dd[2]")
+    bookid = idpath.text
 
-addToClipBoard(bookid)
+    addToClipBoard(bookid)
 
-print ('Your book ID for %s is %s. It has also been copied to your system clipboard (Cmd+V).' % (book, bookid))
+    print ('Your book ID for %s is %s.\n'
+           'It has also been copied to your system clipboard (Cmd+V).' % (book, bookid))
 
-driver.quit()
+except:
+    raise Exception('Something went wrong. Check your spelling and connection.')
+finally:
+    driver.quit()
