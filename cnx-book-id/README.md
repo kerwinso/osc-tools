@@ -13,8 +13,9 @@ Finds a CNX book ID by title via automated web browser.
 ####Install Chromedriver after installing Homebrew:
 `brew install chromedriver`
 
-## Annoyances on os x
+## Annoyances on OS X
 Running Selenium, this dialog may constantly pop up:
+
 `Do you want the application "Python.app" to accept incoming network connections?` 
 
 Alas, this message won't go away even if you click Accept.
