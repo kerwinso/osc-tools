@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Get the book id for cnx-archive-export_epub:
 - Open cte-cnx-dev.cnx.org
@@ -56,6 +57,8 @@ while not book:
         book = False
         continue
     else:
+        if 'AP' in book:
+            book = book.replace('AP', 'AP®')
         print("Browser launching to search for: '%s'" % book)
         print("(browser will quit itself when finished)")
 
@@ -72,16 +75,22 @@ try:
     # find the More Information tab, click on it
     driver.implicitly_wait(30)
     moreinfo = driver.find_element_by_id('metadata-tab')
+    print('Located "More Information" tab, attempting to grab ID...')
     moreinfo.click()
 
     # find the cnx book ID under the book name
-    idpath = driver.find_element_by_xpath("//dl[@class='dl-horizontal']/dd[2]")
+    # xpath1 = "//dl[@class='dl-horizontal']/dd[2]"
+    xpath2 = '//*[@id="content"]/div[4]/div[2]/div/section/div[3]/div/div[4]/div/dl/dd[2]/div'
+
+    idpath = driver.find_element_by_xpath(xpath2)
+
     bookid = idpath.text
+
+    print(bookid)
 
     addToClipBoard(bookid)
 
-    print ('Book ID for %s is %s.\n'
-           'It has also been copied to your system clipboard (Cmd+V).' % (book, bookid))
+    print('Book ID found: ' + bookid + '. It has also been copied to your system clipboard (Cmd+V).')
 except:
     raise Exception('Something went wrong. Check your Internet or server connection.')
 finally:
