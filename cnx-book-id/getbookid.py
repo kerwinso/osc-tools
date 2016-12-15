@@ -79,10 +79,9 @@ try:
     moreinfo.click()
 
     # find the cnx book ID under the book name
-    # xpath1 = "//dl[@class='dl-horizontal']/dd[2]"
-    xpath2 = '//*[@id="content"]/div[4]/div[2]/div/section/div[3]/div/div[4]/div/dl/dd[2]/div'
+    xpath = "//dl[@class='dl-horizontal']/dd[2]/div"
 
-    idpath = driver.find_element_by_xpath(xpath2)
+    idpath = driver.find_element_by_xpath(xpath)
 
     bookid = idpath.text
 
