@@ -38,6 +38,10 @@ function checkserver(x) {
     baseurl = "http://legacy-dev00.cnx.org/content/";
     //alert("CTE found " + baseurl);
   }
+  if (x.contains("tea")) {
+    baseurl = "http://legacy-tea.cnx.org/content/";
+    //alert("CTE found " + baseurl);
+  }
 }
 
 // Check if collectionID is valid and starts with a letter
