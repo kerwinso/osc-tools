@@ -40,7 +40,6 @@ function checkserver(x) {
   }
   if (x.contains("tea")) {
     baseurl = "http://legacy-tea.cnx.org/content/";
-    //alert("CTE found " + baseurl);
   }
 }
 
@@ -181,11 +180,11 @@ function completezip(x) {
   checkserver(x);
   enterCID();
   if (!emptyID && startswithletter) {
-    window.open(baseurl + colID + "/latest/complete", "_self");
+    window.open(baseurl + colID + "/latest/module_export?format=zip", "_self");
     validID = false;
   }
   if (!emptyID && !startswithletter) {
-    window.open(baseurl + "col" + colID + "/latest/complete", "_self");
+    window.open(baseurl + "col" + colID + "/latest/module_export?format=zip", "_self");
     validID = false;
   }
 }
