@@ -8,38 +8,33 @@ function checkserver(x) {
   }
   if (x.contains("qa")) {
     baseurl = "http://legacy-textbook-qa.cnx.org/content/";
-    //alert("QA found " + baseurl);
   }
   if (x.contains("prod")) {
     baseurl = "http://legacy.cnx.org/content/";
-    //alert("Production found " + baseurl);
   }
   if (x.contains("staging1")) {
     baseurl = "http://legacy-staging1.cnx.org/content/";
-    //alert("staging1 found " + baseurl);
   }
   if (x.contains("staging2")) {
     baseurl = "http://legacy-staging2.cnx.org/content/";
-    //alert("staging2 found " + baseurl);
   }
   if (x.contains("staging3")) {
     baseurl = "http://legacy-staging3.cnx.org/content/";
-    //alert("staging3 found " + baseurl);
   }
   if (x.contains("staging4")) {
     baseurl = "http://legacy-staging4.cnx.org/content/";
-    //alert("staging4 found " + baseurl);
   }
   if (x.contains("staging5")) {
     baseurl = "http://legacy-staging5.cnx.org/content/";
-    //alert("staging5 found " + baseurl);
   }
   if (x.contains("cte")) {
     baseurl = "http://legacy-dev00.cnx.org/content/";
-    //alert("CTE found " + baseurl);
   }
   if (x.contains("tea")) {
     baseurl = "http://legacy-tea.cnx.org/content/";
+  }
+  if (x.contains("tutor")) {
+    baseurl = "http://legacy-staging-tutor.cnx.org/content/";
   }
 }
 
