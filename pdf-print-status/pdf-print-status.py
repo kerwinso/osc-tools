@@ -37,6 +37,7 @@ booklist = {
     '11406':'College Physics',
     '11407':'Introduction to Sociology',
     '11448':'Biology',
+    '12047':'Custom Prealgebra',
     '11487':'Concepts of Biology',
     '11496':'Anatomy & Physiology',
     '11562':'Statistics',
