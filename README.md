@@ -1,12 +1,13 @@
 ##Various tools and scripts for OpenStax Content QA:
 
 * batch-build-pdf (Python): Enqueue a batch of PDF files on the CNX legacy editor (textbook-dev or textbook-QA).
-* GitLogin: Applescript to automate logging in to textbook-dev from my local machine, plus a feature to view the real-time transforms. 
+* delete-workgroups (Python + Selenium Webdriver): Automate deleting workgroups using a web browser on the CNX legacy editor.
 * GigaTool: Applescript to choose from 8 different URL commands on 8 different textbook servers.
+* GitLogin: Applescript to automate logging in to textbook-dev from my local machine, plus a feature to view the real-time transforms. 
 * MegaTool : Applescript to speed up common URL commands (enqueue, print info, view latest) on the textbook-dev server.
 * PDF Print Status (Python): Check the locked status of a list of PDFs on production, send an email with the results.
 * QueueToolChooser: Applescript to quickly load the queue tool on your server of choice.
-* [URL Commands Dashboard](http://ks52.web.rice.edu/urlcommands.html): web-based successor to GigaTool
+* URL Commands Dashboard: web-based successor to GigaTool. ([link](http://ks52.web.rice.edu/urlcommands.html))
 
 ### Experimental
 * CNX Book ID: a Rube Goldberg that uses Selenium Webdriver to automate grabbing a CNX book ID 
