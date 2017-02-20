@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
+import subprocess
 import sys
 
 while True:
@@ -20,14 +21,14 @@ while True:
 wgtext = '"' + wg + '"'  # put inside quotes so selenium can read the xpath
 
 print ('OK. Launching web browser to search workgroup names for %s...' % wgtext)
+URL = 'http://legacy-textbook-dev.cnx.org/mydashboard/manageworkgroups'
 driver = webdriver.Chrome()
-driver.set_window_position(720, 0) #fullscreen:1280|laptop:720
-driver.set_window_size(720, 800) #fullscreen:1280,1000|laptop:720,800
+driver.set_window_position(720, 0)  # fullscreen:1280|laptop:720
+driver.set_window_size(720, 800)  # fullscreen:1280,1000|laptop:720,800
 driver.execute_script('window.focus()')
-driver.get('http://legacy-textbook-dev.cnx.org/mydashboard/manageworkgroups')
+driver.get(URL)
 
-print ('Logging in...')
-# need to put into env var
+print ('Logging in to %s...' % URL)
 login_field = driver.find_element(By.ID, '__ac_name')
 password_field = driver.find_element(By.ID, '__ac_password')
 submit = driver.find_element(By.NAME, 'submit')
@@ -43,6 +44,7 @@ wait = WebDriverWait(driver, 10)
 # return a list of wg names that will be deleted
 try:
     print ('Searching for %s...' % wgtext)
+    # xpath to name of workgroup
     xpath_name = '//h2/a[contains(text(),' + wgtext + ')]'
     workgroups_to_delete = []
     links = wait.until(
@@ -57,20 +59,20 @@ try:
     print('These workgroups will be deleted:')
     for w in workgroups_to_delete:
         print('\t' + w)
+
 except:
-    print('Search term not found, exiting.')
+    print('Search term not found, exiting and quitting browser.')
     driver.quit()
     sys.exit()
 
 # confirm delete
 while True:
-    confirm_cancel = raw_input('Delete ALL workgroups on textbook-dev listed above?'
+    confirm_cancel = raw_input('Delete ALL workgroups listed above?'
                                '\n 1 - Confirm'
                                '\n 2 - Cancel'
-                                '\n: '
+                               '\n: '
                                )
     if confirm_cancel == '1':
-        #print('1')
         break
     elif confirm_cancel == '2':
         print('Cancelled')
@@ -80,11 +82,11 @@ while True:
         continue
 
 print ('Looking for the first Delete Workgroup link...')
-xpath = '//h2/a[contains(text(),' + wgtext + ')]/../following-sibling::div/a[3]' # xpath to the delete workgroup link
-#print ('XPath = ' + xpath)
+# xpath to the delete workgroup link
+xpath_deletewg = '//h2/a[contains(text(),' + wgtext + ')]/../following-sibling::div/a[3]'
 
 
-def deleteWorkgroup():
+def delete_workgroup():
     name_element = driver.find_element(By.XPATH, xpath_name)
     wgname = name_element.get_attribute('textContent')
     print ('Delete Workgroup link found for "%s". Clicking it...' % wgname)
@@ -97,7 +99,7 @@ def deleteWorkgroup():
                     )
     print ('Button found: "' + deletebtn.get_attribute('value') + '." Clicking delete button...')
     deletebtn.click()
-    print ('Deleted. Proceeding to confirmation page...')
+    print ('Clicked. Proceeding to confirmation page...')
     wait.until(EC.title_is('Openstax Texbook Dev - Personal Workspace'))
     # print (driver.title)  # should say Personal Workspace
     # looks for the confirmation on the page after you successfully delete the workgroup
@@ -106,9 +108,9 @@ def deleteWorkgroup():
                             (By.CSS_SELECTOR, 'div.portalMessage')
                         )
                     )
-    #print (delconfirmmsg.get_attribute("textContent"))
+    # print (delconfirmmsg.get_attribute("textContent"))
     if delconfirmmsg:
-        print('Confirmed.')
+        print('Delete confirmed.')
     print ('Looking for next link...')
 
 
@@ -116,11 +118,19 @@ try:
     while True:
         link = wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH, xpath)
+                (By.XPATH, xpath_deletewg)
             )
         )
-        deleteWorkgroup()
+        delete_workgroup()
 
 except:
     print('No more links found, exiting the program and the browser.')
     driver.quit()
+
+finally:
+    del_wg_count = str(len(workgroups_to_delete))
+    print('Operation complete. Total number of workgroups deleted: %s' % del_wg_count)
+    app = '"Terminal"'
+    msg = '"Operation complete. Total number of workgroups deleted: ' + del_wg_count + '"'
+    bashCommand = "echo; osascript -e 'tell application "+app+"' -e 'activate' -e 'display alert "+msg+"' -e 'end tell'"
+    subprocess.call([bashCommand], shell=True)
