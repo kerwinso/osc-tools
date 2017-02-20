@@ -23,9 +23,9 @@ wgtext = '"' + wg + '"'  # put inside quotes so selenium can read the xpath
 print ('OK. Launching web browser to search workgroup names for %s...' % wgtext)
 URL = 'http://legacy-textbook-dev.cnx.org/mydashboard/manageworkgroups'
 driver = webdriver.Chrome()
+driver.execute_script('window.focus()')
 driver.set_window_position(720, 0)  # fullscreen:1280|laptop:720
 driver.set_window_size(720, 800)  # fullscreen:1280,1000|laptop:720,800
-driver.execute_script('window.focus()')
 driver.get(URL)
 
 print ('Logging in to %s...' % URL)
@@ -56,7 +56,7 @@ try:
         wg_to_delete = l.get_attribute('textContent')
         workgroups_to_delete.append(wg_to_delete)
 
-    print('These workgroups will be deleted:')
+    print('The following workgroups will be deleted:')
     for w in workgroups_to_delete:
         print('\t' + w)
 
@@ -99,7 +99,7 @@ def delete_workgroup():
                     )
     print ('Button found: "' + deletebtn.get_attribute('value') + '." Clicking delete button...')
     deletebtn.click()
-    print ('Clicked. Proceeding to confirmation page...')
+    print ('Clicked. Loading confirmation page...')
     wait.until(EC.title_is('Openstax Texbook Dev - Personal Workspace'))
     # print (driver.title)  # should say Personal Workspace
     # looks for the confirmation on the page after you successfully delete the workgroup
