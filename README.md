@@ -11,7 +11,6 @@
 
 ### Experimental
 * CNX Book ID: a Rube Goldberg that uses Selenium Webdriver to automate grabbing a CNX book ID 
-* OSWeb broken link checker: checks HTTP response codes on the QA server for every link in the `sitemap.xml` file
 
 
 ##How to get this repo on your local machine (OS X):
