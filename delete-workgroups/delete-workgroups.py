@@ -1,7 +1,6 @@
 """
 Delete all workgroups on legacy CNX front-end matching user inputted text.
 """
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
