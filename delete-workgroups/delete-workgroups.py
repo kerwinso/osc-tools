@@ -86,6 +86,7 @@ xpath_deletewg = '//h2/a[contains(text(),' + wgtext + ')]/../following-sibling::
 
 
 def delete_workgroup():
+    """Search and destroy"""
     name_element = driver.find_element(By.XPATH, xpath_name)
     wgname = name_element.get_attribute('textContent')
     print ('Delete Workgroup link found for "%s". Clicking it...' % wgname)
@@ -100,14 +101,12 @@ def delete_workgroup():
     deletebtn.click()
     print ('Clicked. Loading confirmation page...')
     wait.until(EC.title_is('Openstax Texbook Dev - Personal Workspace'))
-    # print (driver.title)  # should say Personal Workspace
-    # looks for the confirmation on the page after you successfully delete the workgroup
+    # looks for confirmation on the page after successfully deleting the workgroup
     delconfirmmsg = wait.until(
                         EC.presence_of_element_located(
                             (By.CSS_SELECTOR, 'div.portalMessage')
                         )
                     )
-    # print (delconfirmmsg.get_attribute("textContent"))
     if delconfirmmsg:
         print('Delete confirmed.')
     print ('Looking for next link...')
