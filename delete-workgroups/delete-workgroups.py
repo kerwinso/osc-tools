@@ -1,3 +1,4 @@
+#!/Library/Frameworks/Python.framework/Versions/2.7/bin/python
 """
 Delete all workgroups on legacy CNX front-end matching user inputted text.
 """
