@@ -46,19 +46,22 @@ try:
     print ('Searching for %s...' % wgtext)
     # xpath to name of workgroup
     xpath_name = '//h2/a[contains(text(),' + wgtext + ')]'
-    workgroups_to_delete = []
+    workgroups_to_delete = {}
     links = wait.until(
                     EC.presence_of_all_elements_located(
                                 (By.XPATH, xpath_name)
                     )
                 )
     for l in links:
-        wg_to_delete = l.get_attribute('textContent')
-        workgroups_to_delete.append(wg_to_delete)
+        url = l.get_attribute('href')
+        wg_index = url.rfind('wg')
+        wg_id = url[wg_index:]
+        wg_name = l.get_attribute('textContent')
+        workgroups_to_delete[wg_id] = wg_name
 
     print('\033[91mThe following workgroups will be deleted:')
-    for w in workgroups_to_delete:
-        print('\t' + w)
+    for wg_id, wg_name in workgroups_to_delete.iteritems():
+        print('\t' + wg_name + ' (' + wg_id + ')')
 
 except:
     print('Search term not found, exiting and quitting browser.')
@@ -100,7 +103,7 @@ def delete_workgroup():
                             (By.NAME, 'form.button.delete')
                         )
                     )
-    print ('Button found: "' + deletebtn.get_attribute('value') + '." Clicking delete button...')
+    print ('Button found: "' + deletebtn.get_attribute('value') + '." Clicking it...')
     deletebtn.click()
     print ('Clicked. Loading confirmation page...')
     wait.until(EC.title_is('Openstax Texbook Dev - Personal Workspace'))
