@@ -85,6 +85,8 @@ print ('Looking for the first Delete Workgroup link...')
 # xpath to the delete workgroup link
 xpath_deletewg = '//h2/a[contains(text(),' + wgtext + ')]/../following-sibling::div/a[3]'
 
+deleted_count = 0
+
 
 def delete_workgroup():
     """Search and destroy"""
@@ -110,6 +112,8 @@ def delete_workgroup():
                     )
     if delconfirmmsg:
         print('Delete confirmed.')
+        global deleted_count
+        deleted_count += 1
     print ('Looking for next link...')
 
 
@@ -127,9 +131,8 @@ except:
     driver.quit()
 
 finally:
-    del_wg_count = str(len(workgroups_to_delete))
-    print('Operation complete. Total number of workgroups deleted: %s' % del_wg_count)
+    print('Operation complete. Total number of workgroups deleted: %d' % deleted_count)
     app = '"Terminal"'
-    msg = '"Operation complete. Total number of workgroups deleted: ' + del_wg_count + '"'
+    msg = '"Operation complete. Total number of workgroups deleted: ' + str(deleted_count) + '"'
     bashCommand = "echo; osascript -e 'tell application "+app+"' -e 'activate' -e 'display alert "+msg+"' -e 'end tell'"
     subprocess.call([bashCommand], shell=True)
