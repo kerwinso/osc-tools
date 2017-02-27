@@ -67,8 +67,8 @@ except:
 
 # confirm delete
 while True:
-    confirm_cancel = raw_input('\033[0mDelete ALL workgroups listed above?'
-                               '\n 1 - Confirm'
+    confirm_cancel = raw_input('\033[95mDelete ALL workgroups listed above?'
+                               '\n \033[0m1 - Confirm'
                                '\n 2 - Cancel'
                                '\n: '
                                )
