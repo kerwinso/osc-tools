@@ -60,7 +60,7 @@ try:
         workgroups_to_delete[wg_id] = wg_name
 
     print('\033[91mThe following workgroups will be deleted:')
-    for wg_id, wg_name in workgroups_to_delete.iteritems():
+    for wg_id, wg_name in sorted(workgroups_to_delete.iteritems()):
         print('\t' + wg_name + ' (' + wg_id + ')')
 
 except:
