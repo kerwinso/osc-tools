@@ -68,7 +68,7 @@ function enterCID() {
   }
 }
 
-
+// handle module ID
 function enterMID() {
   while (!validID) {
     input = prompt("Enter a module ID");
@@ -88,7 +88,50 @@ function enterMID() {
   }
 }
 
+
 // Link command functions below
+function completezip(x) {
+  checkserver(x);
+  enterCID();
+  if (!emptyID && startswithletter) {
+    window.open(baseurl + colID + "/latest/module_export?format=zip", "_self");
+    validID = false;
+  }
+  if (!emptyID && !startswithletter) {
+    window.open(baseurl + "col" + colID + "/latest/module_export?format=zip", "_self");
+    validID = false;
+  }
+}
+
+
+function downloadPDF(x) {
+  checkserver(x);
+  enterCID();
+  if (!emptyID && startswithletter) {
+    window.open(baseurl + colID + "/latest/pdf", "_self");
+    validID = false;
+  }
+  if (!emptyID && !startswithletter) {
+    window.open(baseurl + "col" + colID + "/latest/pdf", "_self");
+    validID = false;
+  }
+}
+
+
+function downloads(x) {
+  checkserver(x);
+  enterCID();
+  if (!emptyID && startswithletter) {
+    window.open(baseurl + colID + "/latest/content_info#cnx_downloads_header", "_self");
+    validID = false;
+  }
+  if (!emptyID && !startswithletter) {
+    window.open(baseurl + "col" + colID + "/latest/content_info#cnx_downloads_header", "_self");
+    validID = false;
+  }
+}
+
+
 function enqueue(x) {
   checkserver(x);
   enterCID();
@@ -115,18 +158,20 @@ function latest(x) {
   }
 }
 
-function qptool(x) {
+
+function metadata(x) {
   checkserver(x);
   enterCID();
   if (!emptyID && startswithletter) {
-    window.open(baseurl + colID + "/latest/query_ptool", "_self");
+    window.open(baseurl + colID + "/latest/content_info", "_self");
     validID = false;
   }
   if (!emptyID && !startswithletter) {
-    window.open(baseurl + "col" + colID + "/latest/query_ptool", "_self");
+    window.open(baseurl + "col" + colID + "/latest/content_info", "_self");
     validID = false;
   }
 }
+
 
 function printinfo(x) {
   checkserver(x);
@@ -137,6 +182,35 @@ function printinfo(x) {
   }
   if (!emptyID && !startswithletter) {
     window.open(baseurl + "col" + colID + "/latest/printinfo", "_self");
+    validID = false;
+  }
+}
+
+
+function printparameters(x) {
+  alert ("Warning: Use this to look up a parameter only, NOT to update it!");
+  checkserver(x);
+  enterCID();
+  if (!emptyID && startswithletter) {
+    window.open(baseurl + colID + "/latest/collection_parameters", "_self");
+    validID = false;
+  }
+  if (!emptyID && !startswithletter) {
+    window.open(baseurl + "col" + colID + "/latest/collection_parameters", "_self");
+    validID = false;
+  }
+}
+
+
+function qptool(x) {
+  checkserver(x);
+  enterCID();
+  if (!emptyID && startswithletter) {
+    window.open(baseurl + colID + "/latest/query_ptool", "_self");
+    validID = false;
+  }
+  if (!emptyID && !startswithletter) {
+    window.open(baseurl + "col" + colID + "/latest/query_ptool", "_self");
     validID = false;
   }
 }
@@ -157,45 +231,6 @@ function source(x) {
   }
 }
 
-function downloads(x) {
-  checkserver(x);
-  enterCID();
-  if (!emptyID && startswithletter) {
-    window.open(baseurl + colID + "/latest/content_info#cnx_downloads_header", "_self");
-    validID = false;
-  }
-  if (!emptyID && !startswithletter) {
-    window.open(baseurl + "col" + colID + "/latest/content_info#cnx_downloads_header", "_self");
-    validID = false;
-  }
-}
-
-
-function completezip(x) {
-  checkserver(x);
-  enterCID();
-  if (!emptyID && startswithletter) {
-    window.open(baseurl + colID + "/latest/module_export?format=zip", "_self");
-    validID = false;
-  }
-  if (!emptyID && !startswithletter) {
-    window.open(baseurl + "col" + colID + "/latest/module_export?format=zip", "_self");
-    validID = false;
-  }
-}
-
-function downloadPDF(x) {
-  checkserver(x);
-  enterCID();
-  if (!emptyID && startswithletter) {
-    window.open(baseurl + colID + "/latest/pdf", "_self");
-    validID = false;
-  }
-  if (!emptyID && !startswithletter) {
-    window.open(baseurl + "col" + colID + "/latest/pdf", "_self");
-    validID = false;
-  }
-}
 
 function versionhistory(x) {
   checkserver(x);
@@ -206,20 +241,6 @@ function versionhistory(x) {
   }
   if (!emptyID && !startswithletter) {
     window.open(baseurl + "col" + colID + "/latest/content_info#cnx_history_header", "_self");
-    validID = false;
-  }
-}
-
-function printparameters(x) {
-  alert ("Warning: Use this to look up a parameter only, NOT to update it!");
-  checkserver(x);
-  enterCID();
-  if (!emptyID && startswithletter) {
-    window.open(baseurl + colID + "/latest/collection_parameters", "_self");
-    validID = false;
-  }
-  if (!emptyID && !startswithletter) {
-    window.open(baseurl + "col" + colID + "/latest/collection_parameters", "_self");
     validID = false;
   }
 }
