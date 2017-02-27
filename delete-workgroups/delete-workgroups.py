@@ -56,7 +56,7 @@ try:
         wg_to_delete = l.get_attribute('textContent')
         workgroups_to_delete.append(wg_to_delete)
 
-    print('The following workgroups will be deleted:')
+    print('\033[91mThe following workgroups will be deleted:')
     for w in workgroups_to_delete:
         print('\t' + w)
 
@@ -67,7 +67,7 @@ except:
 
 # confirm delete
 while True:
-    confirm_cancel = raw_input('Delete ALL workgroups listed above?'
+    confirm_cancel = raw_input('\033[0mDelete ALL workgroups listed above?'
                                '\n 1 - Confirm'
                                '\n 2 - Cancel'
                                '\n: '
