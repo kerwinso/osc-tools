@@ -13,13 +13,13 @@ to = ['ks52@rice.edu'
 # Email notification; only gets called if there's an un-locked PDF on production
 def ymail():
     pdflist = "\n".join(unlocked)
-    fullstatuslist = '\n'.join(stmsgs)
+    fullstatuslist = "\n".join(stmsgs)
     timestamp = '{:%Y-%b-%d %H:%M:%S}'.format(datetime.datetime.now())
     today = datetime.date.today()    
     # the Gmail user is the parameter for yagmail.SMTP
     yag = yagmail.SMTP('oscontentqa')
     contents = [
-        'PDFs that are not locked on production as of '+ str(timestamp)+':\n'+
+        'PDFs that are not locked on production as of '+ str(timestamp)+':\n\n'+
         str(pdflist)
         + '\n \n Here is the full list of PDF status messages:\n\n' + 
         str(fullstatuslist)
@@ -28,7 +28,7 @@ def ymail():
 
 # List of all collectionIDs on production
 booklist = {
-    '12012':'Chemisty Atoms First',
+    '12012':'Chemistry Atoms First',
     '12074':'University Physics Volume 2',
     '12067':'University Physics Volume 3',
     '12031':'University Physics Volume 1',
