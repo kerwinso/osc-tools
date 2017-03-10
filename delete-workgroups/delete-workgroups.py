@@ -62,6 +62,7 @@ try:
     print('\033[91mThe following workgroups will be deleted:')
     for wg_id, wg_name in sorted(workgroups_to_delete.iteritems()):
         print('\t' + wg_name + ' (' + wg_id + ')')
+    print('Number of workgroups that will be deleted : %d' % len(workgroups_to_delete))
 
 except:
     print('Search term not found, exiting and quitting browser.')
