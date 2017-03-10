@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import urllib
 import datetime
 from bs4 import BeautifulSoup
@@ -6,8 +5,10 @@ import yagmail
 
 # List of email recipients must be formatted in a list like this: 
 # ['email1@host.com','email2@host.com']
-to = ['ks52@rice.edu', 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu', 
-    'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu']
+to = ['ks52@rice.edu'
+      #, 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu',
+      #'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu'
+     ]
 
 # Email notification; only gets called if there's an un-locked PDF on production
 def ymail():
@@ -22,7 +23,7 @@ def ymail():
         str(pdflist)
         + '\n \n Here is the full list of PDF status messages:\n\n' + 
         str(fullstatuslist)
-    ]
+        ]
     yag.send(to, 'PDFs not locked on production: '+str(today), contents)   
 
 # List of all collectionIDs on production
@@ -41,6 +42,7 @@ booklist = {
     '11487':'Concepts of Biology',
     '11496':'Anatomy & Physiology',
     '11562':'Statistics',
+    '12116':'Elementary Algebra',
     '11613':'Economics',
     '11626':'Macroeconomics',
     '11627':'Microeconomics',
@@ -52,6 +54,7 @@ booklist = {
     '11760':'Chemistry',
     '11762':'Sociology 2e',
     '11844':'AP Physics',
+    '11992':'Astronomy',
     '11858':'AP Micro Economics',
     '11864':'AP Macro Economics',
     '11963':'Calculus (full)',
