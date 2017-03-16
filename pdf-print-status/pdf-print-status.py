@@ -7,14 +7,14 @@ import yagmail
 # List of email recipients must be formatted in a list like this: 
 # ['email1@host.com','email2@host.com']
 to = ['ks52@rice.edu'
-      , 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu',
-      'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu'
+      #, 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu',
+      #'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu'
      ]
 
 # Email notification; only gets called if there's an un-locked PDF on production
 def ymail():
-    pdflist = "\n".join(unlocked)
-    fullstatuslist = "\n".join(stmsgs)
+    pdflist = '\n'.join(unlocked)
+    fullstatuslist = '\n'.join(stmsgs)
     timestamp = '{:%Y-%b-%d %H:%M:%S}'.format(datetime.datetime.now())
     today = datetime.date.today()    
     # the Gmail user is the parameter for yagmail.SMTP
@@ -84,27 +84,26 @@ unlocked = []
 # for every collection in the booklist.
 
 for collID,title in sorted(booklist.items()):
-    url = 'http://legacy.cnx.org/content/col'+collID+'/latest/printinfo'
+    url = 'http://legacy.cnx.org/content/col' + collID + '/latest/printinfo'
     html = urllib.urlopen(url).read()
-    soup = BeautifulSoup(html, "lxml")
+    soup = BeautifulSoup(html, 'lxml')
     for s in soup.find_all('div','status'): #finds all the <div> tags with class="span"
         span = s.find('span','data') #within those <div>s, finds the <span> tags with class="data"
         status = span.string #text value within the variable "span"
         timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
-        statusmsg = timestamp + ": Process status for col" + collID + " (" + \
-            title + "): " + status
+        statusmsg = timestamp + ': Process status for col%s (%s): %s' % (collID, title, status)
         print (statusmsg)
         stmsgs.append(statusmsg)
 
-    if status != "locked":
-        book = collID + " " + title
+    if status != 'locked':
+        book = collID + ' ' + title
         unlocked.append(book)
 
-print ("Number of unlocked PDFs: "+str(len(unlocked)))
+print ('Number of unlocked PDFs: ' + str(len(unlocked)))
 
 unlocked.sort()
 stmsgs.sort()
 
 if len(unlocked) > 0:
-    print("Sending email to "+ str(', '.join(to)) + "...")
+    print('Sending email to '+ str(', '.join(to)) + '...')
     ymail()
