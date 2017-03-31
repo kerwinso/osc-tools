@@ -95,9 +95,9 @@ for collID,title in sorted(booklist.items()):
         print (statusmsg)
         stmsgs.append(statusmsg)
 
-    if status != 'locked':
-        book = collID + ' ' + title
-        unlocked.append(book)
+        if status != 'locked':
+            book = collID + ' ' + title
+            unlocked.append(book)
 
 print ('Number of unlocked PDFs: ' + str(len(unlocked)))
 
