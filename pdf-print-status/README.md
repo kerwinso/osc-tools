@@ -12,17 +12,8 @@ You may also have to [install a parser](https://www.crummy.com/software/Beautifu
 
 `pip install lxml` or `sudo easy_install lxml`
 
-You will also need to install [yagmail](https://github.com/kootenpv/yagmail):
 
-`pip install yagmail` or `sudo easy_install yagmail`
-
-## Yagmail Setup
-Yagmail uses the keyring lib to securely save your password on your machine -- not inside the script where anyone can read it. To set this up, and to test if yagmail is working on your machine:
-
-1. Install keyring:  `pip install keyring` or `sudo easy_install keyring`
-1. Run *yagtest.py*:  `python yagtest.py`
-
-When executed, it will prompt you for the password for os content qa @ gmail . com, after which you will be prompted to save it in your keyring. The program will then send a test email to the address(es) listed in `yag.send()`.
+Your environment variables will need to be properly set up, see [this page](http://osxdaily.com/2015/07/28/set-enviornment-variables-mac-os-x/) on how to do so for OS X. You will need to know where your bash profile lives.
 
 ## launchd Scheduling 
 
