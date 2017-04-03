@@ -10,8 +10,8 @@ import os
 # List of email recipients must be formatted in a list like this:
 # ['email1@host.com','email2@host.com']
 to = ['ks52@rice.edu' #, 'openstaxqacs@gmail.com'
-      , 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu',
-      'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu'
+      , 'brw5@rice.edu'
+      , 'nyxer@rice.edu', 'alinams@rice.edu', 'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu'
      ]
 
 # Email notification; only gets called if there's an un-locked PDF on production
