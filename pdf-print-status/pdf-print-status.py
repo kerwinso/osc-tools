@@ -2,11 +2,14 @@
 import urllib
 import datetime
 from bs4 import BeautifulSoup
-import yagmail
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import os
 
-# List of email recipients must be formatted in a list like this: 
+# List of email recipients must be formatted in a list like this:
 # ['email1@host.com','email2@host.com']
-to = ['ks52@rice.edu'
+to = ['ks52@rice.edu' #, 'openstaxqacs@gmail.com'
       , 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu',
       'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu'
      ]
@@ -16,15 +19,28 @@ def send_email_report():
     pdflist = '\n'.join(unlocked)
     fullstatuslist = '\n'.join(stmsgs)
     timestamp = '{:%Y-%b-%d %H:%M:%S}'.format(datetime.datetime.now())
-    today = datetime.date.today()    
-    # the Gmail user is the parameter for yagmail.SMTP
-    yag = yagmail.SMTP('oscontentqa')
-    subject = 'PDFs not locked on production: '+str(today)
-    body = 'PDFs that are not locked on production as of '+ str(timestamp)+':\n\n'+ str(pdflist) \
-                + '\n \n Here is the full list of PDF status messages:\n\n' + str(fullstatuslist)
+    today = datetime.date.today()
+    body = 'PDFs that are not locked on production as of ' + str(timestamp) + ':\n\n' + str(pdflist) \
+           + '\n \n Here is the full list of PDF status messages:\n\n' + str(fullstatuslist)
 
-    contents = yagmail.raw(body)
-    yag.send(to, subject, contents)
+    # mime multipart
+    fromaddress = os.environ['PPS_EMAIL']
+    password = os.environ['PPS_PASSWORD']
+    subject = 'PDFs not locked on production: ' + str(today)
+
+    msg = MIMEMultipart('alternative')
+    msg['From'] = fromaddress
+    msg['To'] = str(to)
+    msg['Subject'] = subject
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(fromaddress, password)
+    text = msg.as_string()
+    server.sendmail(fromaddress, to, text)
+    server.quit()
 
 # List of all collectionIDs on production
 booklist = {
