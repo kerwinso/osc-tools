@@ -7,8 +7,8 @@ import yagmail
 # List of email recipients must be formatted in a list like this: 
 # ['email1@host.com','email2@host.com']
 to = ['ks52@rice.edu'
-      #, 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu',
-      #'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu'
+      , 'brw5@rice.edu', 'nyxer@rice.edu', 'alinams@rice.edu',
+      'bkb1@rice.edu', 'lc50@rice.edu', 'sanura@rice.edu'
      ]
 
 # Email notification; only gets called if there's an un-locked PDF on production
@@ -20,9 +20,10 @@ def send_email_report():
     # the Gmail user is the parameter for yagmail.SMTP
     yag = yagmail.SMTP('oscontentqa')
     subject = 'PDFs not locked on production: '+str(today)
-    contents = 'PDFs that are not locked on production as of '+ str(timestamp)+':\n\n'+ str(pdflist) \
+    body = 'PDFs that are not locked on production as of '+ str(timestamp)+':\n\n'+ str(pdflist) \
                 + '\n \n Here is the full list of PDF status messages:\n\n' + str(fullstatuslist)
 
+    contents = yagmail.raw(body)
     yag.send(to, subject, contents)
 
 # List of all collectionIDs on production
@@ -102,6 +103,6 @@ print ('Number of unlocked PDFs: ' + str(len(unlocked)))
 unlocked.sort()
 stmsgs.sort()
 
-if len(unlocked) >= 0:
+if len(unlocked) > 0:
     print('Sending email to '+ str(', '.join(to)) + '...')
     send_email_report()
