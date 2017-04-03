@@ -28,7 +28,7 @@ def send_email_report():
     password = os.environ['PPS_PASSWORD']
     subject = 'PDFs not locked on production: ' + str(today)
 
-    msg = MIMEMultipart('alternative')
+    msg = MIMEMultipart()
     msg['From'] = fromaddress
     msg['To'] = str(to)
     msg['Subject'] = subject
