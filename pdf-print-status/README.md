@@ -12,8 +12,7 @@ You may also have to [install a parser](https://www.crummy.com/software/Beautifu
 
 `pip install lxml` or `sudo easy_install lxml`
 
-
-Your environment variables will need to be properly set up, see [this page](http://osxdaily.com/2015/07/28/set-enviornment-variables-mac-os-x/) on how to do so for OS X. You will need to know where your bash profile lives.
+Refer to [this wiki page](https://github.com/kerwinso/ost-tools/wiki/Local-machine-setup-for-pdf-print-status) to set up your environment variables and other local machine setup for testing.
 
 ## launchd Scheduling 
 
