@@ -59,10 +59,10 @@ try:
         wg_name = l.get_attribute('textContent')
         workgroups_to_delete[wg_id] = wg_name
 
-    print('\033[91mThe following workgroups will be deleted:')
+    print('\033[95mThe following workgroups will be deleted:')
     for wg_id, wg_name in sorted(workgroups_to_delete.iteritems()):
         print('\t' + wg_name + ' (' + wg_id + ')')
-    print('Number of workgroups that will be deleted : %d' % len(workgroups_to_delete))
+    print('Total number of workgroups to delete : %d' % len(workgroups_to_delete))
 
 except:
     print('Search term not found, exiting and quitting browser.')
@@ -71,7 +71,7 @@ except:
 
 # confirm delete
 while True:
-    confirm_cancel = raw_input('\033[95mDelete ALL workgroups listed above?'
+    confirm_cancel = raw_input('\n\033[91mDelete ALL workgroups listed above? This cannot be undone.'
                                '\n \033[0m1 - Confirm'
                                '\n 2 - Cancel'
                                '\n: '
