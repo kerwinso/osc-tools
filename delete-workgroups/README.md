@@ -1,5 +1,5 @@
-##Overview
-This script uses Selenium Webdriver to automate deleting workgroups using a Chrome browser instance on CNX (currently textbook-dev server only). 
+## Overview
+This script uses Selenium Webdriver to automate deleting workgroups using a Chrome browser instance on legacy CNX (currently textbook-dev server only). This is typically required after a botched content-copy-tool operation.
 
 1. Takes a search term inputted by the user, and returns a list of workgroups matching that term.
 1. Deletes all matching workgroups via the necessary clickthroughs.
@@ -9,15 +9,15 @@ This script uses Selenium Webdriver to automate deleting workgroups using a Chro
 ## Dependencies
 Python 2.7
 
-####Install Selenium:
+#### Install Selenium:
 
 `pip install selenium` or `sudo easy_install selenium `
 
 
-####Install Homebrew by following the instructions at [http://brew.sh](http://brew.sh/).
+#### Install Homebrew by following the instructions at [http://brew.sh](http://brew.sh/).
 
 
-####Install Chromedriver after installing Homebrew:
+#### Install Chromedriver after installing Homebrew:
 `brew install chromedriver`
 
 ## Annoyances on OS X
