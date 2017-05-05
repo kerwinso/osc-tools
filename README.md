@@ -9,9 +9,6 @@
 * **QueueToolChooser**: Applescript to quickly load the queue tool on your server of choice.
 * **URL Commands Dashboard**: web-based successor to GigaTool. ([link](http://ks52.web.rice.edu/urlcommands.html))
 
-### Experimental
-* **CNX Book ID**: a Rube Goldberg that uses Selenium Webdriver to automate grabbing a CNX book ID 
-
 
 ## How to get this repo on your local machine (OS X):
 
