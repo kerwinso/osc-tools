@@ -28,7 +28,7 @@ function checkserver(x) {
     baseurl = "http://legacy-staging5.cnx.org/content/";
   }
   if (x.contains("cte")) {
-    baseurl = "http://legacy-dev.cnx.org/content/";
+    baseurl = "http://legacy-qa.cnx.org/content/";
   }
   if (x.contains("tea")) {
     baseurl = "http://legacy-tea.cnx.org/content/";
