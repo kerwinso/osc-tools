@@ -12,6 +12,9 @@ function checkserver(x) {
   if (x.contains("prod")) {
     baseurl = "http://legacy.cnx.org/content/";
   }
+  if (x.contains("staging")) {
+    baseurl = "http://legacy-staging.cnx.org/content/";
+  }
   if (x.contains("staging1")) {
     baseurl = "http://legacy-staging1.cnx.org/content/";
   }
