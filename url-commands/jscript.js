@@ -4,47 +4,59 @@ var validID = false;
 function checkserver(x) {
   if (x.contains("dev")) {
     baseurl = "http://legacy-textbook-dev.cnx.org/content/";
+    servername = "legacy-textbook-dev.cnx.org";
     //alert("Dev found " + baseurl);
   }
   if (x.contains("qa")) {
     baseurl = "http://legacy-textbook-qa.cnx.org/content/";
+    servername = "legacy-textbook-qa.cnx.org";
   }
   if (x.contains("prod")) {
     baseurl = "http://legacy.cnx.org/content/";
+    servername = "legacy.cnx.org";
   }
   if (x.contains("staging")) {
     baseurl = "http://legacy-staging.cnx.org/content/";
+    servername = "legacy-staging.cnx.org";
   }
   if (x.contains("staging1")) {
     baseurl = "http://legacy-staging1.cnx.org/content/";
+    servername = "legacy-staging1.cnx.org";
   }
   if (x.contains("staging2")) {
     baseurl = "http://legacy-staging2.cnx.org/content/";
+    servername = "legacy-staging2.cnx.org";
   }
   if (x.contains("staging3")) {
     baseurl = "http://legacy-staging3.cnx.org/content/";
+    servername = "legacy-staging3.cnx.org";
   }
   if (x.contains("staging4")) {
     baseurl = "http://legacy-staging4.cnx.org/content/";
+    servername = "legacy-staging4.cnx.org";
   }
   if (x.contains("staging5")) {
     baseurl = "http://legacy-staging5.cnx.org/content/";
+    servername = "legacy-staging5.cnx.org";
   }
   if (x.contains("cte")) {
     baseurl = "http://legacy-qa.cnx.org/content/";
+    servername = "legacy-qa.cnx.org";
   }
   if (x.contains("tea")) {
     baseurl = "http://legacy-tea.cnx.org/content/";
+    servername = "legacy-tea.cnx.org";
   }
   if (x.contains("tutor")) {
     baseurl = "http://legacy-staging-tutor.cnx.org/content/";
+    servername = "legacy-staging-tutor.cnx.org";
   }
 }
 
 // Check if collectionID is valid and starts with a letter
 function enterCID() {
   while (!validID) {
-    input = prompt("Enter a collection or module ID");
+    input = prompt("Enter a collection or module ID for " + servername + ":");
     colID = input.trim().toLowerCase();
     if (colID === null || colID === "" ) { //handles the Cancel button in the Prompt
       emptyID = true;
