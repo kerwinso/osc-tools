@@ -1,4 +1,4 @@
-# Version 3.0
+# Version 4.0
 # Purpose: automate terminal logging in to git, and also looking up realtime transforms based on collectionID
 # initialize variables
 global username, sudopassword, collectionID, cidlength, validID
