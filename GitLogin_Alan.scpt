@@ -1,7 +1,7 @@
 # Version 3.1
 # Purpose: automate terminal logging in to git, and also looking up realtime transforms based on collectionID
 # initialize variables
-global username, sudopassword, collectionID, cidlength, validID
+global username, passphrase, sudopassword, collectionID, cidlength, validID
 set validID to false
 
 #Functions
