@@ -5,22 +5,23 @@ global username, sudopassword, collectionID, cidlength, validID
 set validID to false
 
 #Functions
-# define username @legacy-textbook-dev.cnx.org
-#on textbookdevuser()
-#	set username to the text returned of (display dialog "What is your username @legacy-textbook-dev.cnx.org?" default answer "kerwin")
-#end textbookdevuser
+# enter passphrase
+on passphr()
+	set passphrase to the text returned of (display dialog "Alan, what is your key passphrase?" default answer "" with hidden answer)
+end passphr
 
 # enter sudo password after ssh
 on sudopwd()
-	set sudopassword to the text returned of (display dialog "Kerwin, what is your sudo password?" default answer "" with hidden answer)
+	set sudopassword to the text returned of (display dialog "Alan, what is your sudo password?" default answer "" with hidden answer)
 end sudopwd
 
 #execute login process
 on executelogin()
 	tell application "Terminal"
 		
-		do script "ssh -t kerwin@legacy-textbook-dev.cnx.org exec sudo -H -u www-data -s /bin/bash" in window 1
+		do script "ssh -t alan@legacy-textbook-dev.cnx.org exec sudo -H -u www-data -s /bin/bash" in window 1
 		activate
+		do script passphrase in window 1
 		delay 3
 		do script sudopassword in window 1
 		delay 3
@@ -68,7 +69,7 @@ end monitortransform
 display dialog "GitLogin Tool 3.1: 
 What do you want to do?" buttons {"Cancel", "Git login only", "Git login with transform monitoring"} default button "Git login only"
 if result = {button returned:"Git login only"} then
-	#textbookdevuser()
+	passphr()
 	sudopwd()
 	executelogin()
 else if result = {button returned:"Git login with transform monitoring"} then
@@ -77,7 +78,7 @@ else if result = {button returned:"Git login with transform monitoring"} then
 		if validID is false then
 			display dialog "Collection ID formatted incorrectly, click OK to retry" buttons {"Cancel", "OK"} default button "OK"
 		else
-			#textbookdevuser()
+			passphr()
 			sudopwd()
 			executelogin()
 			monitortransform()
