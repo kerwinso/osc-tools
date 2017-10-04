@@ -19,15 +19,13 @@ end sudopwd
 on executelogin()
 	tell application "Terminal"
 		
-		do script "ssh kerwin@legacy-textbook-dev.cnx.org" in window 1
+		do script "ssh -t kerwin@legacy-textbook-dev.cnx.org exec sudo -H -u www-data -s /bin/bash" in window 1
 		activate
 		delay 3
-		do script "sudo -H -u www-data -s /bin/bash" in window 1
-		delay 3
 		do script sudopassword in window 1
-		delay 2
+		delay 3
 		do script "cd /opt/cnx-buildout/src/Products.RhaptosPrint/Products/RhaptosPrint/epub" in window 1
-		delay 2
+		delay 3
 		do script "git branch -a" in window 1
 		
 	end tell
