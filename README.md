@@ -40,3 +40,6 @@ This will copy all the files in this repo to your machine and put them in a fold
 		1. Delete the finished branch: `git branch -d <newbranchname>`
 		1. Prune your cached data about remote branches that no longer exist: `git remote prune origin`
 		1. Update your local cache with info on new remote branches: `git fetch`
+		
+### OR:
+If it's a very small change (e.g., 1 line), you can use the [GitHub front-end editor](https://help.github.com/articles/editing-files-in-your-repository/). Commit your changes to a new branch and start a pull request (or fork it and propose change), and I'll review it.
