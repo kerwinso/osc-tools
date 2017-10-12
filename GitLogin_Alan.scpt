@@ -1,4 +1,4 @@
-# Version 3.1
+# Version 3.2
 # Purpose: automate terminal logging in to git, and also looking up realtime transforms based on collectionID
 # initialize variables
 global username, passphrase, sudopassword, collectionID, cidlength, validID
@@ -21,6 +21,7 @@ on executelogin()
 		
 		do script "ssh -t alan@legacy-textbook-dev.cnx.org exec sudo -H -u www-data -s /bin/bash" in window 1
 		activate
+		delay 3
 		do script passphrase in window 1
 		delay 3
 		do script sudopassword in window 1
@@ -66,7 +67,7 @@ on monitortransform()
 end monitortransform
 
 # Run the thing! determine which flow to do
-display dialog "GitLogin Tool 3.1: 
+display dialog "GitLogin Tool 3.2 (Alan): 
 What do you want to do?" buttons {"Cancel", "Git login only", "Git login with transform monitoring"} default button "Git login only"
 if result = {button returned:"Git login only"} then
 	passphr()
