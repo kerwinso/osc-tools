@@ -10,14 +10,17 @@ function checkserver(x) {
   if (x.contains("qa")) {
     baseurl = "http://legacy-textbook-qa.cnx.org/content/";
     servername = "legacy-textbook-qa.cnx.org";
+
   }
   if (x.contains("prod")) {
     baseurl = "http://legacy.cnx.org/content/";
     servername = "legacy.cnx.org";
+    webview_url = "http://cnx.org/content/";
   }
   if (x.contains("staging")) {
     baseurl = "http://legacy-staging.cnx.org/content/";
     servername = "legacy-staging.cnx.org";
+    webview_url = "http://staging.cnx.org/content/";
   }
   if (x.contains("staging1")) {
     baseurl = "http://legacy-staging1.cnx.org/content/";
@@ -42,6 +45,7 @@ function checkserver(x) {
   if (x.contains("cte")) {
     baseurl = "http://legacy-qa.cnx.org/content/";
     servername = "legacy-qa.cnx.org";
+    webview_url = "http://qa.cnx.org/content/";
   }
   if (x.contains("tea")) {
     baseurl = "http://legacy-tea.cnx.org/content/";
@@ -56,7 +60,7 @@ function checkserver(x) {
 // Check if collectionID is valid and starts with a letter
 function enterCID() {
   while (!validID) {
-    input = prompt("Enter a collection or module ID for " + servername + ":");
+    input = prompt("Enter a legacy collection or module ID for " + servername + ":");
     colID = input.trim().toLowerCase();
     if (colID === null || colID === "" ) { //handles the Cancel button in the Prompt
       emptyID = true;
@@ -256,6 +260,19 @@ function versionhistory(x) {
   }
   if (!emptyID && !startswithletter) {
     window.open(baseurl + "col" + colID + "/latest/content_info#cnx_history_header", "_self");
+    validID = false;
+  }
+}
+
+function webview(x) {
+  checkserver(x);
+  enterCID();
+  if (!emptyID && startswithletter) {
+    window.open(webview_url + colID + "/latest/", "_self");
+    validID = false;
+  }
+  if (!emptyID && !startswithletter) {
+    window.open(webview_url + "col" + colID + "/latest/", "_self");
     validID = false;
   }
 }
