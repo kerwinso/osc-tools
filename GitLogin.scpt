@@ -1,14 +1,10 @@
-# Version 3.1
-# Purpose: automate terminal logging in to git, and also looking up realtime transforms based on collectionID
+# Version 4.0
+# Automate terminal logging in to git on textbook-dev and devb, and also looking up realtime transforms based on collectionID
 # initialize variables
-global username, sudopassword, collectionID, cidlength, validID
+global username, sudopassword, collectionID, cidlength, validID, textbookdevuser
 set validID to false
 
-#Functions
-# define username @legacy-textbook-dev.cnx.org
-#on textbookdevuser()
-#	set username to the text returned of (display dialog "What is your username @legacy-textbook-dev.cnx.org?" default answer "kerwin")
-#end textbookdevuser
+set textbookdevuser to "kerwin@legacy-textbook-dev.cnx.org"
 
 # enter sudo password after ssh
 on sudopwd()
