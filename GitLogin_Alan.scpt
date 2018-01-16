@@ -1,14 +1,21 @@
-# Version 3.2
-# Purpose: automate terminal logging in to git, and also looking up realtime transforms based on collectionID
+# Version 4.0 for Alan
+
 # initialize variables
-global username, passphrase, sudopassword, collectionID, cidlength, validID
+global username, passphrase, sudopassword, collectionID, cidlength, validID, user, gitpath
 set validID to false
 
 #Functions
-# enter passphrase
-on passphr()
-	set passphrase to the text returned of (display dialog "Alan, what is your key passphrase?" default answer "" with hidden answer)
-end passphr
+
+on set_user()
+	display dialog "GitLogin 4.0: Which server do you want to log in to?" buttons {"Cancel", "textbook-dev", "devb"} default button "devb"
+	if result = {button returned:"textbook-dev"} then
+		set user to "alan@legacy-textbook-dev.cnx.org"
+		set gitpath to "cd /opt/cnx-buildout/src/Products.RhaptosPrint/Products/RhaptosPrint/epub"
+	else if result = {button returned:"devb"} then
+		set user to "alan@devb.cnx.org"
+		set gitpath to "cd /var/lib/cnx/cnx-buildout/epub"
+	end if
+end
 
 # enter sudo password after ssh
 on sudopwd()
@@ -19,14 +26,12 @@ end sudopwd
 on executelogin()
 	tell application "Terminal"
 		
-		do script "ssh -t alan@legacy-textbook-dev.cnx.org exec sudo -H -u www-data -s /bin/bash" in window 1
+		do script "ssh -t " & user & " exec sudo -H -u www-data -s /bin/bash" in window 1
 		activate
-		delay 3
-		do script passphrase in window 1
 		delay 3
 		do script sudopassword in window 1
 		delay 3
-		do script "cd /opt/cnx-buildout/src/Products.RhaptosPrint/Products/RhaptosPrint/epub" in window 1
+		do script gitpath in window 1
 		delay 3
 		do script "git branch -a" in window 1
 		
@@ -38,7 +43,7 @@ on entercolID()
 	set collectionID to the text returned of (display dialog "Enter 5-digit ID of the collection to monitor:" default answer "you can use either col12345 or 12345" buttons {"Cancel", "Continue"} default button "Continue")
 	set cidlength to length of collectionID
 	
-	# standarize collection ID formatting
+	# standardize collection ID formatting
 	if collectionID starts with "col" then
 		set collectionID to collectionID
 	else
@@ -67,10 +72,9 @@ on monitortransform()
 end monitortransform
 
 # Run the thing! determine which flow to do
-display dialog "GitLogin Tool 3.2 (Alan): 
-What do you want to do?" buttons {"Cancel", "Git login only", "Git login with transform monitoring"} default button "Git login only"
+set_user()
+display dialog "What do you want to do?" buttons {"Cancel", "Git login only", "Git login with transform monitoring"} default button "Git login only"
 if result = {button returned:"Git login only"} then
-	passphr()
 	sudopwd()
 	executelogin()
 else if result = {button returned:"Git login with transform monitoring"} then
