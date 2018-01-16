@@ -1,7 +1,7 @@
 # Version 4.0 for Alan
 
 # initialize variables
-global username, passphrase, sudopassword, collectionID, cidlength, validID, user, gitpath
+global username, sudopassword, collectionID, cidlength, validID, user, gitpath
 set validID to false
 
 #Functions
@@ -83,7 +83,6 @@ else if result = {button returned:"Git login with transform monitoring"} then
 		if validID is false then
 			display dialog "Collection ID formatted incorrectly, click OK to retry" buttons {"Cancel", "OK"} default button "OK"
 		else
-			passphr()
 			sudopwd()
 			executelogin()
 			monitortransform()
