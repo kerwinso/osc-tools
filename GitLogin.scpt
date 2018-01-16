@@ -7,7 +7,7 @@ set validID to false
 
 
 on set_user()
-	display dialog "GitLogin 4.0: Which server do you want to log in to?" buttons {"textbook-dev", "devb"} default button "devb"
+	display dialog "GitLogin 4.0: Which server do you want to log in to?" buttons {"Cancel", "textbook-dev", "devb"} default button "devb"
 	if result = {button returned:"textbook-dev"} then
 		set user to "kerwin@legacy-textbook-dev.cnx.org"
 		set gitpath to "cd /opt/cnx-buildout/src/Products.RhaptosPrint/Products/RhaptosPrint/epub"
