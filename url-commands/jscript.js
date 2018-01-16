@@ -7,10 +7,13 @@ function checkserver(x) {
     servername = "legacy-textbook-dev.cnx.org";
     //alert("Dev found " + baseurl);
   }
+  if (x.contains("devb")) {
+    baseurl = "http://legacy-devb.cnx.org/content/";
+    servername = "legacy-debv.cnx.org";
+  }
   if (x.contains("qa")) {
     baseurl = "http://legacy-textbook-qa.cnx.org/content/";
     servername = "legacy-textbook-qa.cnx.org";
-
   }
   if (x.contains("prod")) {
     baseurl = "http://legacy.cnx.org/content/";
