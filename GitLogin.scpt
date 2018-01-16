@@ -1,14 +1,22 @@
-# Version 3.1
-# Purpose: automate terminal logging in to git, and also looking up realtime transforms based on collectionID
+# Version 4.0
+# Automate terminal logging in to git on textbook-dev and devb, and also looking up realtime transforms based on collectionID
+
 # initialize variables
-global username, sudopassword, collectionID, cidlength, validID
+global username, sudopassword, collectionID, cidlength, validID, user, gitpath
 set validID to false
 
-#Functions
-# define username @legacy-textbook-dev.cnx.org
-#on textbookdevuser()
-#	set username to the text returned of (display dialog "What is your username @legacy-textbook-dev.cnx.org?" default answer "kerwin")
-#end textbookdevuser
+
+on set_user()
+	display dialog "GitLogin 4.0: Which server do you want to log in to?" buttons {"textbook-dev", "devb"} default button "devb"
+	if result = {button returned:"textbook-dev"} then
+		set user to "kerwin@legacy-textbook-dev.cnx.org"
+		set gitpath to "cd /opt/cnx-buildout/src/Products.RhaptosPrint/Products/RhaptosPrint/epub"
+	else if result = {button returned:"devb"} then
+		set user to "kerwin@devb.cnx.org"
+		set gitpath to "cd /var/lib/cnx/cnx-buildout/epub"
+	end if
+end
+
 
 # enter sudo password after ssh
 on sudopwd()
@@ -19,12 +27,12 @@ end sudopwd
 on executelogin()
 	tell application "Terminal"
 		
-		do script "ssh -t kerwin@legacy-textbook-dev.cnx.org exec sudo -H -u www-data -s /bin/bash" in window 1
+		do script "ssh -t " & user & " exec sudo -H -u www-data -s /bin/bash" in window 1
 		activate
 		delay 3
 		do script sudopassword in window 1
 		delay 3
-		do script "cd /opt/cnx-buildout/src/Products.RhaptosPrint/Products/RhaptosPrint/epub" in window 1
+		do script gitpath in window 1
 		delay 3
 		do script "git branch -a" in window 1
 		
@@ -64,11 +72,11 @@ on monitortransform()
 	end tell
 end monitortransform
 
+
 # Run the thing! determine which flow to do
-display dialog "GitLogin Tool 3.1: 
-What do you want to do?" buttons {"Cancel", "Git login only", "Git login with transform monitoring"} default button "Git login only"
+set_user()
+display dialog "What do you want to do?" buttons {"Cancel", "Git login only", "Git login with transform monitoring"} default button "Git login only"
 if result = {button returned:"Git login only"} then
-	#textbookdevuser()
 	sudopwd()
 	executelogin()
 else if result = {button returned:"Git login with transform monitoring"} then
@@ -77,7 +85,6 @@ else if result = {button returned:"Git login with transform monitoring"} then
 		if validID is false then
 			display dialog "Collection ID formatted incorrectly, click OK to retry" buttons {"Cancel", "OK"} default button "OK"
 		else
-			#textbookdevuser()
 			sudopwd()
 			executelogin()
 			monitortransform()
