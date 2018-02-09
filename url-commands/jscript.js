@@ -11,52 +11,23 @@ function checkserver(x) {
     baseurl = "http://legacy-devb.cnx.org/content/";
     servername = "legacy-debv.cnx.org";
   }
-  if (x.contains("qa")) {
-    baseurl = "http://legacy-textbook-qa.cnx.org/content/";
-    servername = "legacy-textbook-qa.cnx.org";
-  }
   if (x.contains("prod")) {
     baseurl = "http://legacy.cnx.org/content/";
     servername = "legacy.cnx.org";
     webview_url = "http://cnx.org/content/";
+  }
+  if (x.contains("qa")) {
+    baseurl = "http://legacy-qa.cnx.org/content/";
+    servername = "legacy-qa.cnx.org";
   }
   if (x.contains("staging")) {
     baseurl = "http://legacy-staging.cnx.org/content/";
     servername = "legacy-staging.cnx.org";
     webview_url = "http://staging.cnx.org/content/";
   }
-  if (x.contains("staging1")) {
-    baseurl = "http://legacy-staging1.cnx.org/content/";
-    servername = "legacy-staging1.cnx.org";
-  }
-  if (x.contains("staging2")) {
-    baseurl = "http://legacy-staging2.cnx.org/content/";
-    servername = "legacy-staging2.cnx.org";
-  }
-  if (x.contains("staging3")) {
-    baseurl = "http://legacy-staging3.cnx.org/content/";
-    servername = "legacy-staging3.cnx.org";
-  }
-  if (x.contains("staging4")) {
-    baseurl = "http://legacy-staging4.cnx.org/content/";
-    servername = "legacy-staging4.cnx.org";
-  }
-  if (x.contains("staging5")) {
-    baseurl = "http://legacy-staging5.cnx.org/content/";
-    servername = "legacy-staging5.cnx.org";
-  }
-  if (x.contains("cte")) {
-    baseurl = "http://legacy-qa.cnx.org/content/";
-    servername = "legacy-qa.cnx.org";
-    webview_url = "http://qa.cnx.org/content/";
-  }
-  if (x.contains("tea")) {
-    baseurl = "http://legacy-tea.cnx.org/content/";
-    servername = "legacy-tea.cnx.org";
-  }
-  if (x.contains("tutor")) {
-    baseurl = "http://legacy-staging-tutor.cnx.org/content/";
-    servername = "legacy-staging-tutor.cnx.org";
+  if (x.contains("tqa")) {
+    baseurl = "http://legacy-textbook-qa.cnx.org/content/";
+    servername = "legacy-textbook-qa.cnx.org";
   }
 }
 
