@@ -9,7 +9,8 @@ function checkserver(x) {
   }
   if (x.contains("devb")) {
     baseurl = "http://legacy-devb.cnx.org/content/";
-    servername = "legacy-debv.cnx.org";
+    servername = "legacy-devb.cnx.org";
+    webview_url = "http://devb.cnx.org/content/";
   }
   if (x.contains("prod")) {
     baseurl = "http://legacy.cnx.org/content/";
@@ -19,13 +20,14 @@ function checkserver(x) {
   if (x.contains("qa")) {
     baseurl = "http://legacy-qa.cnx.org/content/";
     servername = "legacy-qa.cnx.org";
+    webview_url = "http://qa.cnx.org/content/";
   }
   if (x.contains("staging")) {
     baseurl = "http://legacy-staging.cnx.org/content/";
     servername = "legacy-staging.cnx.org";
     webview_url = "http://staging.cnx.org/content/";
   }
-  if (x.contains("tqa")) {
+  if (x.contains("tq")) {
     baseurl = "http://legacy-textbook-qa.cnx.org/content/";
     servername = "legacy-textbook-qa.cnx.org";
   }
