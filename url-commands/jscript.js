@@ -45,7 +45,7 @@ function enterCID() {
     colID = input.trim().toLowerCase();
     if (colID === null || colID === "" ) { //handles the Cancel button in the Prompt
       emptyID = true;
-      alert("No ID inputted")
+      alert("No ID inputted, click OK to try again")
       continue;
     }
     if (colID.length == 5 && !isNaN(colID)) {
@@ -76,7 +76,7 @@ function enterMID() {
     mID = input.trim().toLowerCase();
     if (mID === null || mID === "" ) { //handles the Cancel button in the Prompt
       emptyID = true;
-      alert("No ID inputted")
+      alert("No ID inputted, click OK to try again")
       continue;
     }
     if (mID.length == 6 && mID.indexOf("m") == 0) {
@@ -126,6 +126,23 @@ function latest(x) {
   validID = false;
 }
 
+function lock(x) {
+  checkserver(x);
+  enterCID();
+  lock_url = baseurl + colID + "/latest/setProcessStatus?value=locked"
+    lock_confirm = confirm("Status may need a few minutes to update. " +
+            "Click OK to proceed in a new window. " +
+            "\n\nClose the new window to return to this page. " +
+            "You'll need to load the printinfo to check the status again."
+           )
+    if (lock_confirm) {
+      window.open(lock_url, "_blank");
+      validID = false;
+    } else {
+      validID = false;
+    }
+  }
+
 function metadata(x) {
   checkserver(x);
   enterCID();
@@ -170,6 +187,23 @@ function source(x) {
     }
   }
 }
+
+function unlock(x) {
+  checkserver(x);
+  enterCID();
+  unlock_url = baseurl + colID + "/latest/setProcessStatus?value=succeeded"
+    unlock_confirm = confirm("Status may need a few minutes to update. " +
+            "Click OK to proceed in a new window. " +
+            "\n\nClose the new window to return to this page. " +
+            "You'll need to load the printinfo to check the status again."
+           )
+    if (unlock_confirm) {
+      window.open(unlock_url, "_blank");
+      validID = false;
+    } else {
+      validID = false;
+    }
+  }
 
 function versionhistory(x) {
   checkserver(x);
