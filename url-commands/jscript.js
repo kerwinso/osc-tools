@@ -84,6 +84,11 @@ function enterMID() {
       emptyID = false;
       baseurl = short_url
     }
+    else if (mID.length == 5 && !isNaN(mID)) {
+      validID = true;
+      emptyID = false;
+      baseurl = short_url + "m"
+    }
     else {
       alert("Invalid module ID format, click OK to try again");
     }
