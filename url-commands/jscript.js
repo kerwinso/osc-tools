@@ -132,8 +132,10 @@ function enqueue(x) {
 }
 
 function gotoserver(x) {
-  checkserver(x)
-  window.open("https://" + servername, "_self")
+  checkserver(x);
+  if (confirm("Click OK to go to " + servername)) {
+    window.open("https://" + servername, "_self");
+  }
 }
 
 function latest(x) {
