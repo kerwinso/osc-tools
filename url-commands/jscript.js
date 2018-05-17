@@ -189,6 +189,12 @@ function qptool(x) {
   validID = false;
 }
 
+function queue_tool(x) {
+  checkserver(x);
+  // http://legacy-devb.cnx.org/queue_tool/manage_overview?trigger=Refresh
+  window.open("https://" + servername + "/queue_tool/manage_overview?trigger=Refresh", "_self");
+}
+
 // view XML source for modules in Chrome only
 function source(x) {
   var browser = navigator.userAgent;
