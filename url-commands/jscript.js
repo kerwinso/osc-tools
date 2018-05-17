@@ -5,8 +5,8 @@ function checkserver(x) {
   if (x.contains("custom")) {
     domain = prompt("Enter your domain name (everything before the `.cnx.org`)")
     alert("Your domain is: " + domain + ".cnx.org.")
-    short_url = "https://" + domain + ".cnx.org/content/";
-    long_url = "https://" + domain + ".cnx.org/content/col";
+    short_url = "https://legacy-" + domain + ".cnx.org/content/";
+    long_url = "https://legacy-" + domain + ".cnx.org/content/col";
     servername = "legacy-" + domain + ".cnx.org";
   }
   if (x.contains("dev")) {
