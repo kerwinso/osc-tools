@@ -5,7 +5,7 @@ var valid_domain = false;
 function checkserver(x) {
   if (x.contains("custom")) {
     while (!valid_domain) {
-    domain = prompt("Enter your domain name (everything before the `.cnx.org`)")
+    domain = prompt("Enter everything before the `.cnx.org` other than `legacy-`")
       //cancel button
       if (domain == null) {
         return;
