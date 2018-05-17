@@ -2,39 +2,46 @@ var validID = false;
 
 //Checks which server based on the class name
 function checkserver(x) {
+  if (x.contains("custom")) {
+    domain = prompt("Enter your domain name (everything before the `.cnx.org`)")
+    alert("Your domain is: " + domain + ".cnx.org. Next, enter a colID or mID.")
+    short_url = "https://" + domain + ".cnx.org/content/";
+    long_url = "https://" + domain + ".cnx.org/content/col";
+    servername = "https://" + domain + ".cnx.org";
+  }
   if (x.contains("dev")) {
-    short_url = "http://legacy-textbook-dev.cnx.org/content/";
-    long_url = "http://legacy-textbook-dev.cnx.org/content/col";
+    short_url = "https://legacy-textbook-dev.cnx.org/content/";
+    long_url = "https://legacy-textbook-dev.cnx.org/content/col";
     servername = "legacy-textbook-dev.cnx.org";
   }
   if (x.contains("devb")) {
-    short_url = "http://legacy-devb.cnx.org/content/";
-    long_url = "http://legacy-devb.cnx.org/content/col";
+    short_url = "https://legacy-devb.cnx.org/content/";
+    long_url = "https://legacy-devb.cnx.org/content/col";
     servername = "legacy-devb.cnx.org";
-    webview_url = "http://devb.cnx.org/content/";
+    webview_url = "https://devb.cnx.org/content/";
   }
   if (x.contains("prod")) {
-    short_url = "http://legacy.cnx.org/content/";
-    long_url = "http://legacy.cnx.org/content/col";
+    short_url = "https://legacy.cnx.org/content/";
+    long_url = "https://legacy.cnx.org/content/col";
     servername = "legacy.cnx.org";
-    webview_url = "http://cnx.org/content/";
+    webview_url = "https://cnx.org/content/";
   }
   if (x.contains("qa")) {
-    short_url = "http://legacy-qa.cnx.org/content/";
-    long_url = "http://legacy-qa.cnx.org/content/col";
+    short_url = "https://legacy-qa.cnx.org/content/";
+    long_url = "https://legacy-qa.cnx.org/content/col";
     servername = "legacy-qa.cnx.org";
-    webview_url = "http://qa.cnx.org/content/";
+    webview_url = "https://qa.cnx.org/content/";
   }
   if (x.contains("staging")) {
-    short_url = "http://legacy-staging.cnx.org/content/";
-    long_url = "http://legacy-staging.cnx.org/content/col";
+    short_url = "https://legacy-staging.cnx.org/content/";
+    long_url = "https://legacy-staging.cnx.org/content/col";
     servername = "legacy-staging.cnx.org";
-    webview_url = "http://staging.cnx.org/content/";
+    webview_url = "https://staging.cnx.org/content/";
   }
   if (x.contains("tq")) {
-    short_url = "http://legacy-textbook-qa.cnx.org/content/";
-    long_url = "http://legacy-textbook-qa.cnx.org/content/col";
-    servername = "legacy-textbook-qa.cnx.org";
+    short_url = "https://legacy-textbook-qa.cnx.org/content/";
+    long_url = "https://legacy-textbook-qa.cnx.org/content/col";
+    servername = "https://legacy-textbook-qa.cnx.org";
   }
 }
 
