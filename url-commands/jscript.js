@@ -5,7 +5,7 @@ var valid_domain = false;
 function checkserver(x) {
   if (x.contains("custom")) {
     while (!valid_domain) {
-    domain = prompt("Enter everything before the `.cnx.org` other than `legacy-`")
+    domain = prompt("Enter everything before the `.cnx.org` other than `legacy-`:")
       //cancel button
       if (domain == null) {
         return;
@@ -15,7 +15,7 @@ function checkserver(x) {
         continue;
       }
       else if (domain !== "") {
-        alert("Your domain is: " + domain + ".cnx.org.")
+        alert("Your domain is: " + domain + ".cnx.org")
         short_url = "https://legacy-" + domain + ".cnx.org/content/";
         long_url = "https://legacy-" + domain + ".cnx.org/content/col";
         servername = "legacy-" + domain + ".cnx.org";
