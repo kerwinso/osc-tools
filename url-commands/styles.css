@@ -1,9 +1,9 @@
 body {
-  font-family: Noto Sans, Helvetica, sans-serif;
+  font-family: "Noto Sans", Helvetica, sans-serif;
   font-size: 14px;
 }
 h1 {
-  font-family: Roboto Slab, serif;
+  font-family: "Roboto Slab", serif;
 }
 h2 {
   font-size: 1.2em;
@@ -40,14 +40,12 @@ a.toplinks:hover {
 }
 .servername {
   color: #002469;
-}
-a.servername {
-  color: #002469;
   text-decoration: underline;
 }
-a.servername:hover {
+.servername:hover {
   text-decoration: none;
   background-color: transparent;
+  cursor: pointer;
 }
 .command {
   color: #77AF42;

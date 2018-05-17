@@ -4,10 +4,10 @@ var validID = false;
 function checkserver(x) {
   if (x.contains("custom")) {
     domain = prompt("Enter your domain name (everything before the `.cnx.org`)")
-    alert("Your domain is: " + domain + ".cnx.org. Next, enter a colID or mID.")
+    alert("Your domain is: " + domain + ".cnx.org.")
     short_url = "https://" + domain + ".cnx.org/content/";
     long_url = "https://" + domain + ".cnx.org/content/col";
-    servername = "https://" + domain + ".cnx.org";
+    servername = "legacy-" + domain + ".cnx.org";
   }
   if (x.contains("dev")) {
     short_url = "https://legacy-textbook-dev.cnx.org/content/";
@@ -41,7 +41,7 @@ function checkserver(x) {
   if (x.contains("tq")) {
     short_url = "https://legacy-textbook-qa.cnx.org/content/";
     long_url = "https://legacy-textbook-qa.cnx.org/content/col";
-    servername = "https://legacy-textbook-qa.cnx.org";
+    servername = "legacy-textbook-qa.cnx.org";
   }
 }
 
@@ -129,6 +129,11 @@ function enqueue(x) {
   enterCID();
   window.open(baseurl + colID + "/latest/enqueue", "_self");
   validID = false;
+}
+
+function gotoserver(x) {
+  checkserver(x)
+  window.open("https://" + servername, "_self")
 }
 
 function latest(x) {
