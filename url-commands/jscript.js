@@ -1,13 +1,31 @@
 var validID = false;
+var valid_domain = false;
 
 //Checks which server based on the class name
 function checkserver(x) {
   if (x.contains("custom")) {
+    while (!valid_domain) {
     domain = prompt("Enter your domain name (everything before the `.cnx.org`)")
-    alert("Your domain is: " + domain + ".cnx.org.")
-    short_url = "https://legacy-" + domain + ".cnx.org/content/";
-    long_url = "https://legacy-" + domain + ".cnx.org/content/col";
-    servername = "legacy-" + domain + ".cnx.org";
+      //cancel button
+      if (domain == null) {
+        return;
+      }
+      else if (domain == "") {
+        alert("Nothing inputted, try again");
+        continue;
+      }
+      else if (domain !== "") {
+        alert("Your domain is: " + domain + ".cnx.org.")
+        short_url = "https://legacy-" + domain + ".cnx.org/content/";
+        long_url = "https://legacy-" + domain + ".cnx.org/content/col";
+        servername = "legacy-" + domain + ".cnx.org";
+        valid_domain = true;
+      }
+      else {
+        alert("Please enter a valid domain");
+        continue;
+      }
+    }
   }
   if (x.contains("dev")) {
     short_url = "https://legacy-textbook-dev.cnx.org/content/";
@@ -108,6 +126,7 @@ function completezip(x) {
   enterCID();
   window.open(baseurl + colID + "/latest/complete", "_self");
   validID = false;
+
 }
 
 function downloadPDF(x) {
@@ -135,6 +154,9 @@ function gotoserver(x) {
   checkserver(x);
   if (confirm("Click OK to go to " + servername)) {
     window.open("https://" + servername, "_self");
+  }
+  else {
+    valid_domain = false;
   }
 }
 
