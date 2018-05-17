@@ -99,7 +99,7 @@ function enterMID() {
 function completezip(x) {
   checkserver(x);
   enterCID();
-  window.open(baseurl + colID + "/latest/module_export?format=zip", "_self");
+  window.open(baseurl + colID + "/latest/complete", "_self");
   validID = false;
 }
 
