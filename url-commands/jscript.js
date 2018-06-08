@@ -163,7 +163,7 @@ function gotoserver(x) {
 function latest(x) {
   checkserver(x);
   enterCID();
-  window.open(baseurl + colID + "/latest/", "_self");
+  window.open(baseurl + colID + "/latest", "_self");
   validID = false;
 }
 
