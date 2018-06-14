@@ -121,6 +121,14 @@ function enterMID() {
 }
 
 // Link command functions below
+function collxml(x) {
+  checkserver(x);
+  enterCID();
+  window.open(baseurl + colID + "/latest/source_create", "_self");
+  validID = false;
+
+}
+
 function completezip(x) {
   checkserver(x);
   enterCID();
