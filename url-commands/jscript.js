@@ -18,7 +18,7 @@ function checkserver(x) {
         alert("Your domain is: " + domain + ".cnx.org")
         short_url = "https://legacy-" + domain + ".cnx.org/content/";
         long_url = "https://legacy-" + domain + ".cnx.org/content/col";
-        servername = "https://legacy-" + domain + ".cnx.org";
+        servername = "legacy-" + domain + ".cnx.org";
         webview_url = "https://legacy-" + domain + ".cnx.org/content/";
         gob_url = "https://" + domain + ".cnx.org/a/content-status";
         valid_domain = true;
@@ -62,7 +62,7 @@ function checkserver(x) {
 // Check if collectionID is valid and whether to use baseurl+"col"
 function enterCID() {
   while (!validID) {
-    input = prompt("Enter a legacy collection or module ID for " + servername + ":");
+    input = prompt("Enter a legacy collection or module ID for " + servername + " (" + prompt_fn_name + "):");
     colID = input.trim().toLowerCase();
     if (colID === null || colID === "" ) { //handles the Cancel button in the Prompt
       emptyID = true;
@@ -90,10 +90,10 @@ function enterCID() {
   }
 }
 
-// enter module ID for source function
+// enter module ID for source function only
 function enterMID() {
   while (!validID) {
-    input = prompt("Enter a legacy module ID for " + servername + ":");
+    input = prompt("Enter a legacy module ID to see source for " + servername + ":");
     mID = input.trim().toLowerCase();
     if (mID === null || mID === "" ) { //handles the Cancel button in the Prompt
       emptyID = true;
@@ -118,6 +118,7 @@ function enterMID() {
 
 // Link command functions below
 function collxml(x) {
+  prompt_fn_name = "collection.xml";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/source_create", "_self");
@@ -126,6 +127,7 @@ function collxml(x) {
 }
 
 function completezip(x) {
+  prompt_fn_name = "complete zip";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/complete", "_self");
@@ -134,6 +136,7 @@ function completezip(x) {
 }
 
 function downloadPDF(x) {
+  prompt_fn_name = "PDF";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/pdf", "_self");
@@ -141,6 +144,7 @@ function downloadPDF(x) {
 }
 
 function downloads(x) {
+  prompt_fn_name = "downloads list";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/content_info#cnx_downloads_header", "_self");
@@ -148,6 +152,7 @@ function downloads(x) {
 }
 
 function enqueue(x) {
+  prompt_fn_name = "enqueue";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/enqueue", "_self");
@@ -157,6 +162,7 @@ function enqueue(x) {
 function gob(x) {
   checkserver(x);
   window.open(gob_url, "_self");
+  validID = false;
 }
 
 function gotoserver(x) {
@@ -170,6 +176,7 @@ function gotoserver(x) {
 }
 
 function latest(x) {
+  prompt_fn_name = "latest";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest", "_self");
@@ -177,6 +184,7 @@ function latest(x) {
 }
 
 function lock(x) {
+  prompt_fn_name = "lock";
   checkserver(x);
   enterCID();
   lock_url = baseurl + colID + "/latest/setProcessStatus?value=locked"
@@ -194,6 +202,7 @@ function lock(x) {
   }
 
 function metadata(x) {
+  prompt_fn_name = "content_info";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/content_info", "_self");
@@ -201,6 +210,7 @@ function metadata(x) {
 }
 
 function printinfo(x) {
+  prompt_fn_name = "printinfo";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/printinfo", "_self");
@@ -208,6 +218,7 @@ function printinfo(x) {
 }
 
 function printparameters(x) {
+  prompt_fn_name = "print parameters";
   alert ("Warning: Use this to look up a parameter only, NOT to update it!");
   checkserver(x);
   enterCID();
@@ -216,6 +227,7 @@ function printparameters(x) {
 }
 
 function qptool(x) {
+  prompt_fn_name = "query_ptool";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/query_ptool", "_self");
@@ -226,6 +238,7 @@ function queue_tool(x) {
   checkserver(x);
   // http://legacy-devb.cnx.org/queue_tool/manage_overview?trigger=Refresh
   window.open("https://" + servername + "/queue_tool/manage_overview?trigger=Refresh", "_self");
+  validID = false;
 }
 
 // view XML source for modules in Chrome only
@@ -245,6 +258,7 @@ function source(x) {
 }
 
 function unlock(x) {
+  prompt_fn_name = "unlock";
   checkserver(x);
   enterCID();
   unlock_url = baseurl + colID + "/latest/setProcessStatus?value=succeeded"
@@ -262,6 +276,7 @@ function unlock(x) {
   }
 
 function versionhistory(x) {
+  prompt_fn_name = "version history";
   checkserver(x);
   enterCID();
   window.open(baseurl + colID + "/latest/content_info#cnx_history_header", "_self");
@@ -269,6 +284,7 @@ function versionhistory(x) {
 }
 
 function webview(x) {
+  prompt_fn_name = "webview";
   checkserver(x);
   enterCID();
   if (baseurl == short_url) {
