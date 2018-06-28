@@ -18,7 +18,9 @@ function checkserver(x) {
         alert("Your domain is: " + domain + ".cnx.org")
         short_url = "https://legacy-" + domain + ".cnx.org/content/";
         long_url = "https://legacy-" + domain + ".cnx.org/content/col";
-        servername = "legacy-" + domain + ".cnx.org";
+        servername = "https://legacy-" + domain + ".cnx.org";
+        webview_url = "https://legacy-" + domain + ".cnx.org/content/";
+        gob_url = "https://" + domain + ".cnx.org/a/content-status";
         valid_domain = true;
       }
       else {
@@ -27,39 +29,33 @@ function checkserver(x) {
       }
     }
   }
-  if (x.contains("dev")) {
-    short_url = "https://legacy-textbook-dev.cnx.org/content/";
-    long_url = "https://legacy-textbook-dev.cnx.org/content/col";
-    servername = "legacy-textbook-dev.cnx.org";
-  }
   if (x.contains("devb")) {
     short_url = "https://legacy-devb.cnx.org/content/";
     long_url = "https://legacy-devb.cnx.org/content/col";
     servername = "legacy-devb.cnx.org";
     webview_url = "https://devb.cnx.org/content/";
+    gob_url = "https://devb.cnx.org/a/content-status/";
   }
   if (x.contains("prod")) {
     short_url = "https://legacy.cnx.org/content/";
     long_url = "https://legacy.cnx.org/content/col";
     servername = "legacy.cnx.org";
     webview_url = "https://cnx.org/content/";
+    gob_url = "https://cnx.org/a/content-status/";
   }
   if (x.contains("qa")) {
     short_url = "https://legacy-qa.cnx.org/content/";
     long_url = "https://legacy-qa.cnx.org/content/col";
     servername = "legacy-qa.cnx.org";
     webview_url = "https://qa.cnx.org/content/";
+    gob_url = "https://qa.cnx.org/a/content-status/";
   }
   if (x.contains("staging")) {
     short_url = "https://legacy-staging.cnx.org/content/";
     long_url = "https://legacy-staging.cnx.org/content/col";
     servername = "legacy-staging.cnx.org";
     webview_url = "https://staging.cnx.org/content/";
-  }
-  if (x.contains("tq")) {
-    short_url = "https://legacy-textbook-qa.cnx.org/content/";
-    long_url = "https://legacy-textbook-qa.cnx.org/content/col";
-    servername = "legacy-textbook-qa.cnx.org";
+    gob_url = "https://staging.cnx.org/a/content-status/";
   }
 }
 
@@ -156,6 +152,11 @@ function enqueue(x) {
   enterCID();
   window.open(baseurl + colID + "/latest/enqueue", "_self");
   validID = false;
+}
+
+function gob(x) {
+  checkserver(x);
+  window.open(gob_url, "_self");
 }
 
 function gotoserver(x) {

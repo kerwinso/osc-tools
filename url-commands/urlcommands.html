@@ -17,7 +17,6 @@
 
 <!--LEFT COLUMN  -->
     <div class="column-left">
-
       <h2><span class="servername devb" onclick="gotoserver(this.classList)">legacy-devb.cnx.org</span></h2>
       <ul>
         <li><span class="command devb" onclick="collxml(this.classList)">collection.xml</span></li>
@@ -35,9 +34,9 @@
         <li><span class="command devb" onclick="unlock(this.classList)">unlock</span></li>
         <li><span class="command devb" onclick="versionhistory(this.classList)">version history</span></li>
         <li><span class="command devb" onclick="webview(this.classList)">webview</span></li>
-        <li><em><a class="command devb" onclick="queue_tool(this.classList)">Queue Tool</a></em></li>
+        <li><em><a class="command devb" onclick="queue_tool(this.classList)">Queue Tool (legacy print)</a></em></li>
+        <li><em><a class="command devb" onclick="gob(this.classList)">GOB Baking Monitoring Tool</a></em></li>
       </ul>
-
 
       <h2><span class="servername prod" onclick="gotoserver(this.classList)">legacy.cnx.org</span></h2>
       <ul>
@@ -54,7 +53,8 @@
         <li><span class="command prod" onclick="source(this.classList)">source (module)</span></li>
         <li><span class="command prod" onclick="versionhistory(this.classList)">version history</span></li>
         <li><span class="command prod" onclick="webview(this.classList)">webview</span></li>
-        <li><em><a class="command prod" onclick="queue_tool(this.classList)">Queue Tool?</a></em></li>
+        <li><em><a class="command prod" onclick="queue_tool(this.classList)">Queue Tool (legacy print)</a></em></li>
+        <li><em><a class="command prod" onclick="gob(this.classList)">GOB Baking Monitoring Tool</a></em></li>
       </ul>
 
       <h2><span class="servername custom" onclick="gotoserver(this.classList)">Custom domain</span></h2>
@@ -74,34 +74,14 @@
         <li><span class="command custom" onclick="unlock(this.classList)">unlock</span></li>
         <li><span class="command custom" onclick="versionhistory(this.classList)">version history</span></li>
         <li><span class="command custom" onclick="webview(this.classList)">webview</span></li>
-        <li><em><a class="command custom" onclick="queue_tool(this.classList)">Queue Tool</a></em></li>
+        <li><em><a class="command custom" onclick="queue_tool(this.classList)">Queue Tool (legacy print)</a></em></li>
+        <li><em><a class="command custom" onclick="gob(this.classList)">GOB Baking Monitoring Tool</a></em></li>
       </ul>
-
 </div>
 
 
 <!-- RIGHT COLUMN -->
     <div class="column-right">
-      <h2><span class="servername qa" onclick="gotoserver(this.classList)">legacy-qa.cnx.org</span></h2>
-      <ul>
-        <li><span class="command qa" onclick="collxml(this.classList)">collection.xml</span></li>
-        <li><span class="command qa" onclick="completezip(this.classList)">complete zip</span></li>
-        <li><span class="command qa" onclick="metadata(this.classList)">content info (metadata)</span></li>
-        <li><span class="command qa" onclick="downloads(this.classList)">downloads</span></li>
-        <li><span class="command qa" onclick="enqueue(this.classList)">enqueue</span></li>
-        <li><span class="command qa" onclick="latest(this.classList)">latest</span></li>
-        <li><span class="command qa" onclick="lock(this.classList)">lock</span></li>
-        <li><span class="command qa" onclick="downloadPDF(this.classList)">pdf</span></li>
-        <li><span class="command qa" onclick="printparameters(this.classList)">print parameters</span></li>
-        <li><span class="command qa" onclick="printinfo(this.classList)">printinfo</span></li>
-        <li><span class="command qa" onclick="qptool(this.classList)">query_ptool</span></li>
-        <li><span class="command qa" onclick="source(this.classList)">source (module)</span></li>
-        <li><span class="command qa" onclick="unlock(this.classList)">unlock</span></li>
-        <li><span class="command qa" onclick="versionhistory(this.classList)">version history</span></li>
-        <li><span class="command qa" onclick="webview(this.classList)">webview</span></li>
-        <li><em><a class="command qa" onclick="queue_tool(this.classList)">Queue Tool</a></em></li>
-      </ul>
-
       <h2><span class="servername staging" onclick="gotoserver(this.classList)">legacy-staging.cnx.org</span></h2>
       <ul>
         <li><span class="command staging" onclick="collxml(this.classList)">collection.xml</span></li>
@@ -119,9 +99,30 @@
         <li><span class="command staging" onclick="unlock(this.classList)">unlock</span></li>
         <li><span class="command staging" onclick="versionhistory(this.classList)">version history</span></li>
         <li><span class="command staging" onclick="webview(this.classList)">webview</span></li>
-        <li><em><a class="command staging" onclick="queue_tool(this.classList)">Queue Tool</a></em></li>
+        <li><em><a class="command staging" onclick="queue_tool(this.classList)">Queue Tool (legacy print)</a></em></li>
+        <li><em><a class="command staging" onclick="gob(this.classList)">GOB Baking Monitoring Tool</a></em></li>
       </ul>
 
+      <h2><span class="servername qa" onclick="gotoserver(this.classList)">legacy-qa.cnx.org</span></h2>
+      <ul>
+        <li><span class="command qa" onclick="collxml(this.classList)">collection.xml</span></li>
+        <li><span class="command qa" onclick="completezip(this.classList)">complete zip</span></li>
+        <li><span class="command qa" onclick="metadata(this.classList)">content info (metadata)</span></li>
+        <li><span class="command qa" onclick="downloads(this.classList)">downloads</span></li>
+        <li><span class="command qa" onclick="enqueue(this.classList)">enqueue</span></li>
+        <li><span class="command qa" onclick="latest(this.classList)">latest</span></li>
+        <li><span class="command qa" onclick="lock(this.classList)">lock</span></li>
+        <li><span class="command qa" onclick="downloadPDF(this.classList)">pdf</span></li>
+        <li><span class="command qa" onclick="printparameters(this.classList)">print parameters</span></li>
+        <li><span class="command qa" onclick="printinfo(this.classList)">printinfo</span></li>
+        <li><span class="command qa" onclick="qptool(this.classList)">query_ptool</span></li>
+        <li><span class="command qa" onclick="source(this.classList)">source (module)</span></li>
+        <li><span class="command qa" onclick="unlock(this.classList)">unlock</span></li>
+        <li><span class="command qa" onclick="versionhistory(this.classList)">version history</span></li>
+        <li><span class="command qa" onclick="webview(this.classList)">webview</span></li>
+        <li><em><a class="command qa" onclick="queue_tool(this.classList)">Queue Tool (legacy print)</a></em></li>
+        <li><em><a class="command qa" onclick="gob(this.classList)">GOB Baking Monitoring Tool</a></em></li>
+      </ul>
     </div>
 
     <div class="clear">
