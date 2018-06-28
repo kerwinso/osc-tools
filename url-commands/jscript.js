@@ -123,7 +123,6 @@ function collxml(x) {
   enterCID();
   window.open(baseurl + colID + "/latest/source_create", "_self");
   validID = false;
-
 }
 
 function completezip(x) {
@@ -132,7 +131,6 @@ function completezip(x) {
   enterCID();
   window.open(baseurl + colID + "/latest/complete", "_self");
   validID = false;
-
 }
 
 function downloadPDF(x) {
