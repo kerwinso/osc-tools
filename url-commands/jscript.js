@@ -20,7 +20,6 @@ function checkserver(x) {
         long_url = "https://legacy-" + domain + ".cnx.org/content/col";
         servername = "legacy-" + domain + ".cnx.org";
         webview_url = "https://legacy-" + domain + ".cnx.org/content/";
-        gob_url = "https://" + domain + ".cnx.org/a/content-status";
         front_end = "https://" + domain + ".cnx.org";
         valid_domain = true;
       }
@@ -35,7 +34,6 @@ function checkserver(x) {
     long_url = "https://legacy-devb.cnx.org/content/col";
     servername = "legacy-devb.cnx.org";
     webview_url = "https://devb.cnx.org/content/";
-    gob_url = "https://devb.cnx.org/a/content-status/";
     front_end = "https://devb.cnx.org";
   }
   if (x.contains("prod")) {
@@ -43,7 +41,6 @@ function checkserver(x) {
     long_url = "https://legacy.cnx.org/content/col";
     servername = "legacy.cnx.org";
     webview_url = "https://cnx.org/content/";
-    gob_url = "https://cnx.org/a/content-status/";
     front_end = "https://cnx.org";
   }
   if (x.contains("qa")) {
@@ -51,7 +48,6 @@ function checkserver(x) {
     long_url = "https://legacy-qa.cnx.org/content/col";
     servername = "legacy-qa.cnx.org";
     webview_url = "https://qa.cnx.org/content/";
-    gob_url = "https://qa.cnx.org/a/content-status/";
     front_end = "https://qa.cnx.org";
   }
   if (x.contains("staging")) {
@@ -59,7 +55,6 @@ function checkserver(x) {
     long_url = "https://legacy-staging.cnx.org/content/col";
     servername = "legacy-staging.cnx.org";
     webview_url = "https://staging.cnx.org/content/";
-    gob_url = "https://staging.cnx.org/a/content-status/";
     front_end = "https://staging.cnx.org";
   }
 }
@@ -170,7 +165,7 @@ function frontend(x) {
 
 function gob(x) {
   checkserver(x);
-  window.open(gob_url, "_self");
+  window.open(front_end + "/a/content-status", "_self");
   validID = false;
 }
 
