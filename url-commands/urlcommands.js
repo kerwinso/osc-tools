@@ -19,7 +19,7 @@ function checkserver(x) {
         short_url = "https://legacy-" + domain + ".cnx.org/content/";
         long_url = "https://legacy-" + domain + ".cnx.org/content/col";
         servername = "legacy-" + domain + ".cnx.org";
-        webview_url = "https://legacy-" + domain + ".cnx.org/content/";
+        webview_url = "https://" + domain + ".cnx.org/content/";
         front_end = "https://" + domain + ".cnx.org";
         valid_domain = true;
       }
